@@ -191,6 +191,28 @@ window.AMORBIT_CONFIG = {
     border: 1px solid rgba(255,255,255,.14);
   }
   .done h3 { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+  .done { scroll-margin-top: 24px; text-align: center; }
+  .syn { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto 6px; overflow: visible; }
+  .syn-you, .syn-them { transition: transform 1.5s cubic-bezier(.2,.7,.2,1); transform-box: view-box; }
+  .syn-you { transform-origin: 165px 112px; }
+  .syn-them { transform-origin: 235px 112px; }
+  .syn.apart .syn-you { transform: translateX(-70px) rotate(-40deg); }
+  .syn.apart .syn-them { transform: translateX(70px) rotate(40deg); }
+  .syn-glow { opacity: 0; transition: opacity 1s ease; }
+  .syn.glow .syn-glow { opacity: .28; animation: synPulse 2.4s ease-in-out infinite; }
+  @keyframes synPulse { 0%,100% { opacity: .18; } 50% { opacity: .34; } }
+  .syn-line { fill: none; stroke: #E9D8A6; stroke-width: 1.4; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .9; transition: stroke-dashoffset .7s ease; }
+  .syn.linked .syn-line { stroke-dashoffset: 0; }
+  .syn-name { font: 500 15px var(--body); opacity: 0; transition: opacity .8s ease; }
+  .syn.named .syn-name { opacity: 1; }
+  .syn-status { min-height: 1.6em; margin: 0 0 4px; color: var(--mist-soft); font-size: 15px; transition: opacity .4s ease; }
+  .done-text { opacity: 0; transform: translateY(8px); transition: opacity .8s ease, transform .8s ease; }
+  .done-text.show { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .syn-you, .syn-them, .syn-line, .syn-name, .done-text, .syn-glow { transition: none; }
+    .syn.glow .syn-glow { animation: none; }
+  }
   .done p { margin: 0; color: var(--mist-soft); }
 
   /* What's coming */
@@ -323,8 +345,20 @@ window.AMORBIT_CONFIG = {
       </form>
 
       <div class="done" id="done" tabindex="-1">
-        <h3>Your free reading is on its way</h3>
-        <p id="doneText">Check your inbox in a few minutes.</p>
+        <svg class="syn apart" id="syn" viewBox="55 22 290 225" aria-hidden="true">
+          <defs><clipPath id="synClip"><circle cx="165" cy="112" r="82"/></clipPath></defs>
+          <circle class="syn-glow" cx="235" cy="112" r="82" clip-path="url(#synClip)" fill="#B9A2D8"/>
+          <g class="syn-you" id="synYou"></g>
+          <g class="syn-them" id="synThem"></g>
+          <g id="synLines"></g>
+          <text class="syn-name" id="synYouName" x="120" y="232" text-anchor="middle" fill="#E58FA8"></text>
+          <text class="syn-name" id="synThemName" x="280" y="232" text-anchor="middle" fill="#9FB4F0"></text>
+        </svg>
+        <p class="syn-status" id="synStatus" aria-live="polite"></p>
+        <div class="done-text" id="doneWrap">
+          <h3>Your free reading is on its way</h3>
+          <p id="doneText">Check your inbox in a few minutes.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -467,6 +501,57 @@ document.getElementById("year").textContent = new Date().getFullYear();
     return ok;
   }
 
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // Two charts slide together, the lines where they meet draw in, then the confirmation appears
+  function playSynastry(youName, themName) {
+    var NS = "http://www.w3.org/2000/svg";
+    var svg = document.getElementById("syn");
+    var status = document.getElementById("synStatus");
+    var wrap = document.getElementById("doneWrap");
+    var R = 82, CY = 112, CX_YOU = 165, CX_THEM = 235;
+    var youDots = [18, 72, 140, 205, 288, 330], themDots = [160, 226, 20, 100, 255, 305];
+    function el(tag, attrs, parent) {
+      var n = document.createElementNS(NS, tag);
+      for (var k in attrs) n.setAttribute(k, attrs[k]);
+      parent.appendChild(n); return n;
+    }
+    function pt(cx, deg) { var a = deg * Math.PI / 180; return [cx + (R - 12) * Math.cos(a), CY + (R - 12) * Math.sin(a)]; }
+    function ring(g, cx, color, dots) {
+      g.innerHTML = "";
+      el("circle", { cx: cx, cy: CY, r: R, fill: "none", stroke: color, "stroke-width": 1.6 }, g);
+      el("circle", { cx: cx, cy: CY, r: R - 24, fill: "none", stroke: color, "stroke-opacity": .5 }, g);
+      for (var i = 0; i < 12; i++) {
+        var a = i * 30 * Math.PI / 180;
+        el("line", { x1: cx + (R - 24) * Math.cos(a), y1: CY + (R - 24) * Math.sin(a),
+                     x2: cx + R * Math.cos(a), y2: CY + R * Math.sin(a), stroke: color, "stroke-opacity": .5 }, g);
+      }
+      dots.forEach(function (d, i) { var p = pt(cx, d); el("circle", { cx: p[0], cy: p[1], r: i === 0 ? 4.5 : 3.2, fill: i === 0 ? "#E9D8A6" : color }, g); });
+    }
+    ring(document.getElementById("synYou"), CX_YOU, "#E58FA8", youDots);
+    ring(document.getElementById("synThem"), CX_THEM, "#9FB4F0", themDots);
+    var lines = document.getElementById("synLines"); lines.innerHTML = "";
+    [[0, 2], [1, 3], [3, 0], [4, 5], [5, 4]].forEach(function (pair, i) {
+      var a = pt(CX_YOU, youDots[pair[0]]), b = pt(CX_THEM, themDots[pair[1]]);
+      var path = el("path", { d: "M" + a[0] + " " + a[1] + " L" + b[0] + " " + b[1], pathLength: 1, "class": "syn-line" }, lines);
+      path.style.transitionDelay = (i * 0.22) + "s";
+    });
+    document.getElementById("synYouName").textContent = youName;
+    document.getElementById("synThemName").textContent = themName;
+
+    if (reduce) {
+      svg.setAttribute("class", "syn linked glow named");
+      wrap.classList.add("show"); status.textContent = ""; return;
+    }
+    svg.setAttribute("class", "syn apart");
+    wrap.classList.remove("show");
+    status.textContent = "Placing your planets…";
+    setTimeout(function () { svg.setAttribute("class", "syn named"); }, 80);
+    setTimeout(function () { svg.setAttribute("class", "syn named linked"); status.textContent = "Finding where your charts meet…"; }, 1600);
+    setTimeout(function () { svg.setAttribute("class", "syn named linked glow"); status.textContent = "Writing your reading…"; }, 2900);
+    setTimeout(function () { status.textContent = ""; wrap.classList.add("show"); }, 3900);
+  }
+
   f.addEventListener("submit", function (e) {
     e.preventDefault();
     status.textContent = "";
@@ -502,7 +587,9 @@ document.getElementById("year").textContent = new Date().getFullYear();
         "We're sending the reading for " + payload.you.name + " and " + payload.them.name +
         " to " + payload.email + ". It usually arrives within a few minutes.";
       done.style.display = "block";
-      done.focus();
+      done.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+      done.focus({ preventScroll: true });
+      playSynastry(payload.you.name, payload.them.name);
     }).catch(function () {
       status.textContent = "Your reading wasn't sent because the connection failed. Check your internet and select Send our free reading again.";
       status.className = "form-status error";
