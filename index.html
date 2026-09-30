@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amorbit — astrology for the two of you</title>
+<meta name="description" content="Amorbit reads your birth chart against theirs. Get a free compatibility reading.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+
+<script>
+/* ===== CONFIG: edit these two lines before going live ===== */
+window.AMORBIT_CONFIG = {
+  PIXEL_ID: "",      // your Meta Pixel ID, e.g. "1234567890"
+  API_ENDPOINT: ""   // your FastAPI endpoint, e.g. "https://api.yourdomain.com/waitlist"
+};
+/* Leave API_ENDPOINT empty to preview: the form shows success without sending anything. */
+</script>
+
+<script>
+(function () {
+  var id = window.AMORBIT_CONFIG.PIXEL_ID;
+  if (!id) return;
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', id);
+  fbq('track', 'PageView');
+})();
+</script>
+
+<style>
+  :root {
+    --dusk: #2A1B38;
+    --dusk-raised: #36244A;
+    --mist: #F3DCE3;
+    --mist-soft: #C9B3C4;
+    --you: #E58FA8;
+    --them: #9FB4F0;
+    --star: #E9D8A6;
+    --error: #FFB4A2;
+    --display: "Bodoni Moda", Georgia, serif;
+    --body: "Figtree", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html { background: var(--dusk); }
+  body {
+    margin: 0;
+    background: transparent;
+    color: var(--mist);
+    font-family: var(--body);
+    font-size: 17px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Blurred sky: soft color blobs behind everything, shifting as you scroll */
+  .sky {
+    position: fixed; inset: 0; z-index: -1; overflow: hidden;
+    background: linear-gradient(180deg, #35244C 0%, #2A1B38 50%, #231630 100%);
+  }
+  .blob {
+    position: absolute; width: 75vmax; height: 75vmax; border-radius: 50%;
+    will-change: transform, opacity;
+  }
+  .b1 { left: -30vmax; top: -22vmax; background: radial-gradient(closest-side, rgba(229,143,168,.40), rgba(229,143,168,0)); }
+  .b2 { right: -32vmax; top: -6vmax;  background: radial-gradient(closest-side, rgba(159,180,240,.34), rgba(159,180,240,0)); }
+  .b3 { left: -34vmax; top: 40vmax;   background: radial-gradient(closest-side, rgba(185,162,216,.26), rgba(185,162,216,0)); }
+  .b4 { right: -36vmax; top: 64vmax;  background: radial-gradient(closest-side, rgba(233,216,166,.13), rgba(233,216,166,0)); opacity: .4; }
+  .scrim { position: absolute; inset: 0; background: rgb(42,27,56); opacity: .32; will-change: opacity; }
+
+  a { color: var(--mist); }
+  :focus-visible { outline: 2px solid var(--star); outline-offset: 3px; }
+
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  .hero { padding: 40px 0 56px; text-align: center; }
+  .brand { font-family: var(--display); font-size: 22px; letter-spacing: 0.02em; margin: 0 0 12px; }
+  .charts { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto 8px; }
+  .ring-you, .ring-them { transition: transform 1.8s cubic-bezier(.2,.7,.2,1); transform-box: view-box; }
+  .charts.apart .ring-you { transform: translateX(-46px) rotate(-30deg); transform-origin: 160px 130px; }
+  .charts.apart .ring-them { transform: translateX(46px) rotate(30deg); transform-origin: 240px 130px; }
+  .ring-you { transform-origin: 160px 130px; }
+  .ring-them { transform-origin: 240px 130px; }
+  .overlap { transition: opacity 1.2s ease 1.2s; }
+  .charts.apart .overlap { opacity: 0; }
+
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(36px, 8vw, 58px);
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    margin: 0 auto 18px;
+    max-width: 14ch;
+  }
+  .lede { color: var(--mist-soft); max-width: 34em; margin: 0 auto 28px; }
+
+  .btn {
+    display: inline-block;
+    font: 600 17px/1 var(--body);
+    color: var(--dusk);
+    background: var(--mist);
+    border: 0;
+    border-radius: 999px;
+    padding: 17px 30px;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn:hover { background: #fff; }
+  .btn-big { font-size: 18px; padding: 19px 36px; box-shadow: 0 0 0 6px rgba(243,220,227,.10); }
+  .assure { margin: 16px auto 0; font-size: 15px; color: var(--mist); max-width: 30em; }
+
+  .sample {
+    margin: 0 0 32px; padding: 20px 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-left: 3px solid var(--you);
+    background: rgba(54,36,74,.55);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+  .sample figcaption { font-size: 14px; color: var(--mist-soft); margin-bottom: 8px; }
+  .sample blockquote { margin: 0; font-family: var(--display); font-size: 19px; line-height: 1.5; }
+  .btn[disabled] { opacity: .6; cursor: wait; }
+
+  /* Form */
+  .reading { padding: 8px 0 64px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(28px, 5.5vw, 38px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+  }
+  .reading > .wrap > p { color: var(--mist-soft); margin: 0 0 28px; }
+
+  form { display: grid; gap: 28px; }
+  .people { display: grid; gap: 20px; }
+  @media (min-width: 640px) { .people { grid-template-columns: 1fr 1fr; } }
+
+  fieldset {
+    margin: 0;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,.14);
+    border-radius: 18px;
+    background: rgba(54,36,74,.55);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+  }
+  fieldset.you { border-top: 3px solid var(--you); }
+  fieldset.them { border-top: 3px solid var(--them); }
+  legend { font-family: var(--display); font-size: 21px; padding: 0 6px; }
+
+  .field { display: grid; gap: 6px; margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  label { font-size: 15px; font-weight: 500; }
+  .hint { font-size: 13.5px; color: var(--mist-soft); }
+  input[type=text], input[type=email], input[type=date], input[type=time] {
+    width: 100%;
+    font: 400 16px var(--body);
+    color: var(--mist);
+    background: rgba(35,22,48,.6);
+    border: 1px solid rgba(243,220,227,.25);
+    border-radius: 10px;
+    padding: 12px 12px;
+    color-scheme: dark;
+  }
+  input::placeholder { color: #8f7a93; }
+  input[aria-invalid=true] { border-color: var(--error); }
+  .err { font-size: 13.5px; color: var(--error); min-height: 0; }
+
+  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--mist-soft); }
+  .consent input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--you); }
+
+  .form-status { font-size: 15px; }
+  .form-status.error { color: var(--error); }
+
+  .done {
+    display: none;
+    padding: 28px;
+    border-radius: 18px;
+    background: rgba(54,36,74,.55);
+    -webkit-backdrop-filter: blur(20px) saturate(140%);
+    backdrop-filter: blur(20px) saturate(140%);
+    border: 1px solid rgba(255,255,255,.14);
+  }
+  .done h3 { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
+  .done p { margin: 0; color: var(--mist-soft); }
+
+  /* What's coming */
+  .coming { padding: 56px 0; border-top: 1px solid rgba(243,220,227,.12); }
+  .coming ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 22px; }
+  .coming li { padding-left: 28px; position: relative; }
+  .coming li::before {
+    content: ""; position: absolute; left: 4px; top: 9px;
+    width: 9px; height: 9px; border-radius: 50%; background: var(--star);
+  }
+  .coming strong { display: block; font-weight: 600; }
+  .coming span { color: var(--mist-soft); }
+
+  .pricing { padding: 0 0 56px; }
+  .pricing p { color: var(--mist-soft); margin: 10px 0 0; max-width: 36em; }
+
+  footer { padding: 28px 0 40px; border-top: 1px solid rgba(243,220,227,.12); font-size: 13.5px; color: var(--mist-soft); }
+  footer p { margin: 0 0 8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .ring-you, .ring-them, .overlap { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true">
+  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
+  <div class="scrim"></div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="brand">Amorbit</p>
+
+    <svg class="charts apart" id="charts" viewBox="0 0 400 260" role="img"
+         aria-label="Two birth charts drawn as rings, overlapping in the middle">
+      <defs>
+        <clipPath id="clipYou"><circle cx="160" cy="130" r="95"/></clipPath>
+      </defs>
+      <circle class="overlap" cx="240" cy="130" r="95" clip-path="url(#clipYou)" fill="#B9A2D8" fill-opacity=".22"/>
+      <g class="ring-you" id="ringYou"></g>
+      <g class="ring-them" id="ringThem"></g>
+    </svg>
+
+    <h1>See what happens where your charts overlap</h1>
+    <p class="lede">Amorbit reads your birth chart against theirs, then tells you each morning what the day holds for the two of you.</p>
+    <a class="btn btn-big" href="#reading">Get our free reading</a>
+    <p class="assure">Free. No card, no app to download. Lands in your inbox in minutes.</p>
+  </div>
+</header>
+
+<main>
+  <section class="reading" id="reading">
+    <div class="wrap">
+      <h2>Your free compatibility reading</h2>
+      <p>It costs nothing. Enter both birthdays and we'll email a short reading of how your charts fit together. No card needed, ever.</p>
+
+      <figure class="sample">
+        <figcaption>What a free reading sounds like</figcaption>
+        <blockquote>Your Venus lands close to their Mars, so the pull you both felt early on has a real basis. Your Moons sit far apart, though: you recharge alone, they recharge together. Say that out loud before it turns into a fight.</blockquote>
+      </figure>
+
+      <form id="waitlist" novalidate>
+        <div class="people">
+          <fieldset class="you">
+            <legend>You</legend>
+            <div class="field">
+              <label for="you_name">First name</label>
+              <input type="text" id="you_name" name="you_name" autocomplete="given-name" required>
+              <span class="err" id="you_name_err"></span>
+            </div>
+            <div class="field">
+              <label for="you_date">Birth date</label>
+              <input type="date" id="you_date" name="you_date" required>
+              <span class="err" id="you_date_err"></span>
+            </div>
+            <div class="field">
+              <label for="you_time">Birth time</label>
+              <input type="time" id="you_time" name="you_time">
+              <span class="hint">Adds your rising sign. Don't know it? Leave it blank.</span>
+            </div>
+            <div class="field">
+              <label for="you_place">Birth city</label>
+              <input type="text" id="you_place" name="you_place" placeholder="Austin, Texas" required>
+              <span class="err" id="you_place_err"></span>
+            </div>
+          </fieldset>
+
+          <fieldset class="them">
+            <legend>Them</legend>
+            <div class="field">
+              <label for="them_name">First name</label>
+              <input type="text" id="them_name" name="them_name" required>
+              <span class="err" id="them_name_err"></span>
+            </div>
+            <div class="field">
+              <label for="them_date">Birth date</label>
+              <input type="date" id="them_date" name="them_date" required>
+              <span class="err" id="them_date_err"></span>
+            </div>
+            <div class="field">
+              <label for="them_time">Birth time</label>
+              <input type="time" id="them_time" name="them_time">
+              <span class="hint">Adds their rising sign. Leave blank if you're not sure.</span>
+            </div>
+            <div class="field">
+              <label for="them_place">Birth city</label>
+              <input type="text" id="them_place" name="them_place" placeholder="Leave blank if unknown">
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="field">
+          <label for="email">Where should we send your reading?</label>
+          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
+          <span class="err" id="email_err"></span>
+        </div>
+
+        <label class="consent">
+          <input type="checkbox" id="consent" name="consent" required>
+          <span>Email me my reading and tell me when Amorbit launches. I can unsubscribe anytime.</span>
+        </label>
+        <span class="err" id="consent_err"></span>
+
+        <div>
+          <button class="btn btn-big" type="submit" id="submitBtn">Send our free reading</button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+
+      <div class="done" id="done" tabindex="-1">
+        <h3>Your free reading is on its way</h3>
+        <p id="doneText">Check your inbox in a few minutes.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="coming">
+    <div class="wrap">
+      <h2>What Amorbit does when it launches</h2>
+      <ul>
+        <li><strong>A daily note for the two of you</strong><span>Each morning: whether today suits a big conversation, or is better left light.</span></li>
+        <li><strong>The full picture of your match</strong><span>Where you pull together, where you clash, and why.</span></li>
+        <li><strong>The same answer every time</strong><span>Your reading comes from exact planetary positions, so it won't change if you check again tomorrow.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="wrap">
+      <h2>Free means free</h2>
+      <p>This reading costs nothing and asks for no card. When the app launches, your birth chart and a compatibility summary stay free for good.</p>
+      <p>Deeper features will be an optional subscription. You'll always see the price before you pay, and we'll remind you before any renewal.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Readings are written with AI from precise planetary positions. For reflection and fun, not for major life decisions.</p>
+    <p>We use your birth details only to create your reading, and we never sell your data. <a href="/privacy.html" id="privacyLink">Privacy policy</a></p>
+    <p>© <span id="year"></span> Amorbit</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- Chart rings ---------- */
+(function drawRings() {
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    parent.appendChild(n);
+    return n;
+  }
+  function ring(group, cx, cy, color, planets) {
+    el("circle", { cx: cx, cy: cy, r: 95, fill: "none", stroke: color, "stroke-width": 1.6 }, group);
+    el("circle", { cx: cx, cy: cy, r: 72, fill: "none", stroke: color, "stroke-opacity": .55, "stroke-width": 1 }, group);
+    for (var i = 0; i < 12; i++) {           // 12 zodiac divisions
+      var a = (i * 30) * Math.PI / 180;
+      el("line", {
+        x1: cx + 72 * Math.cos(a), y1: cy + 72 * Math.sin(a),
+        x2: cx + 95 * Math.cos(a), y2: cy + 95 * Math.sin(a),
+        stroke: color, "stroke-opacity": .55, "stroke-width": 1
+      }, group);
+    }
+    planets.forEach(function (deg, i) {       // planet positions
+      var a = deg * Math.PI / 180, r = 83;
+      el("circle", { cx: cx + r * Math.cos(a), cy: cy + r * Math.sin(a), r: i === 0 ? 4.5 : 3, fill: i === 0 ? "#E9D8A6" : color }, group);
+    });
+  }
+  ring(document.getElementById("ringYou"), 160, 130, "#E58FA8", [12, 58, 131, 204, 290, 337]);
+  ring(document.getElementById("ringThem"), 240, 130, "#9FB4F0", [168, 221, 16, 95, 260, 312]);
+
+  var svg = document.getElementById("charts");
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { svg.classList.remove("apart"); });
+  });
+})();
+
+
+/* ---------- Sky drifts with scroll ---------- */
+(function sky() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var b = [".b1", ".b2", ".b3", ".b4"].map(function (c) { return document.querySelector(c); });
+  var scrim = document.querySelector(".scrim");
+  var ticking = false;
+  function update() {
+    ticking = false;
+    var max = document.documentElement.scrollHeight - innerHeight;
+    var p = max > 0 ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    var w = innerWidth, h = innerHeight;
+    // Blobs drift apart rather than piling up, and the scrim deepens toward the bottom
+    b[0].style.transform = "translate(" + (p * .20 * w) + "px," + (p * .30 * h) + "px) scale(" + (1 - .2 * p) + ")";
+    b[0].style.opacity = 1 - .65 * p;
+    b[1].style.transform = "translate(" + (p * .10 * w) + "px," + (p * .20 * h) + "px)";
+    b[1].style.opacity = 1 - .4 * p;
+    b[2].style.transform = "translate(" + (-p * .10 * w) + "px," + (-p * .15 * h) + "px)";
+    b[3].style.transform = "translate(" + (p * .10 * w) + "px," + (-p * .25 * h) + "px) scale(" + (1 + .15 * p) + ")";
+    b[3].style.opacity = .4 + .5 * p;
+    scrim.style.opacity = .32 + .14 * p;
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  update();
+})();
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* ---------- Form ---------- */
+(function form() {
+  var cfg = window.AMORBIT_CONFIG;
+  var f = document.getElementById("waitlist");
+  var btn = document.getElementById("submitBtn");
+  var status = document.getElementById("formStatus");
+  var startedTracked = false;
+
+  // Keep ad parameters so each signup can be traced back to the ad that brought it
+  var params = new URLSearchParams(location.search);
+  var attribution = {};
+  ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid"].forEach(function (k) {
+    if (params.get(k)) attribution[k] = params.get(k);
+  });
+
+  f.addEventListener("focusin", function () {
+    if (!startedTracked && window.fbq) { fbq("track", "ViewContent", { content_name: "reading_form" }); }
+    startedTracked = true;
+  });
+
+  function setError(id, msg) {
+    var input = document.getElementById(id);
+    var err = document.getElementById(id + "_err");
+    if (input && input.type !== "checkbox") input.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (err) err.textContent = msg || "";
+    return !msg;
+  }
+
+  function validate() {
+    var ok = true;
+    var today = new Date().toISOString().slice(0, 10);
+    ok = setError("you_name", f.you_name.value.trim() ? "" : "Enter your first name.") && ok;
+    ok = setError("them_name", f.them_name.value.trim() ? "" : "Enter their first name.") && ok;
+    ["you_date", "them_date"].forEach(function (id) {
+      var v = f[id].value;
+      var msg = !v ? "Enter a birth date." : (v > today ? "Birth date can't be in the future." : "");
+      ok = setError(id, msg) && ok;
+    });
+    ok = setError("you_place", f.you_place.value.trim() ? "" : "Enter the city you were born in.") && ok;
+    var email = f.email.value.trim();
+    ok = setError("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Enter an email address like you@example.com.") && ok;
+    ok = setError("consent", f.consent.checked ? "" : "Tick the box so we can email your reading.") && ok;
+    return ok;
+  }
+
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    status.textContent = "";
+    status.className = "form-status";
+    if (!validate()) {
+      var first = f.querySelector("[aria-invalid=true]") || f.consent;
+      first.focus();
+      return;
+    }
+
+    var payload = {
+      you: { name: f.you_name.value.trim(), date: f.you_date.value, time: f.you_time.value || null, place: f.you_place.value.trim() },
+      them: { name: f.them_name.value.trim(), date: f.them_date.value, time: f.them_time.value || null, place: f.them_place.value.trim() || null },
+      email: f.email.value.trim(),
+      consent: true,
+      attribution: attribution,
+      submitted_at: new Date().toISOString()
+    };
+
+    btn.disabled = true;
+    btn.textContent = "Sending…";
+
+    var send = cfg.API_ENDPOINT
+      ? fetch(cfg.API_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
+          .then(function (r) { if (!r.ok) throw new Error("status " + r.status); })
+      : new Promise(function (res) { console.log("Preview mode, not sent:", payload); setTimeout(res, 600); });
+
+    send.then(function () {
+      if (window.fbq) fbq("track", "Lead");
+      f.style.display = "none";
+      var done = document.getElementById("done");
+      document.getElementById("doneText").textContent =
+        "We're sending the reading for " + payload.you.name + " and " + payload.them.name +
+        " to " + payload.email + ". It usually arrives within a few minutes.";
+      done.style.display = "block";
+      done.focus();
+    }).catch(function () {
+      status.textContent = "Your reading wasn't sent because the connection failed. Check your internet and select Send our free reading again.";
+      status.className = "form-status error";
+      btn.disabled = false;
+      btn.textContent = "Send our free reading";
+    });
+  });
+})();
+</script>
+</body>
+</html>
