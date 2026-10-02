@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Amorbit — astrology for the two of you</title>
-<meta name="description" content="Amorbit reads your birth chart against theirs. Get a free compatibility reading.">
+<title>Amorbit — A little more us.</title>
+<meta name="description" content="Amorbit reads your birth chart against theirs. Explore your connection with a free compatibility reading.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
 <script>
 /* ===== CONFIG: edit these two lines before going live ===== */
@@ -33,318 +33,112 @@ window.AMORBIT_CONFIG = {
 </script>
 
 <style>
-  :root {
-    --dusk: #2A1B38;
-    --dusk-raised: #36244A;
-    --mist: #F3DCE3;
-    --mist-soft: #C9B3C4;
-    --you: #E58FA8;
-    --them: #9FB4F0;
-    --star: #E9D8A6;
-    --error: #FFB4A2;
-    --display: "Bodoni Moda", Georgia, serif;
-    --body: "Figtree", system-ui, sans-serif;
-  }
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  html { background: var(--dusk); }
-  body {
-    margin: 0;
-    background: transparent;
-    color: var(--mist);
-    font-family: var(--body);
-    font-size: 17px;
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
+:root{--dusk:#241d30;--mist:#f6f0e7;--mist-soft:#bdb1c7;--you:#e5a3b7;--them:#adbcec;--star:#e5d4af;--error:#a33448;--ink:#302938;--muted:#716b76;--line:#e2ddd5;--display:"IM Fell English",Georgia,"Noto Serif","Times New Roman",serif;--body:"Libre Caslon Text",Georgia,"Noto Serif",serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:30px}body{margin:0;background:var(--mist);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}a{color:inherit}button,input{font:inherit}button,a,input,summary{-webkit-tap-highlight-color:transparent}:focus-visible{outline:3px solid #aa6986;outline-offset:5px}[hidden]{display:none!important}.wrap{width:min(1160px,calc(100% - 96px));margin:auto}.eyebrow{font-size:11px;font-weight:600;letter-spacing:.19em;text-transform:uppercase}.hero-shell{position:relative;isolation:isolate;background:#241d30;color:var(--mist);overflow:hidden}.sky{position:absolute;inset:0;z-index:-1;overflow:hidden;background:linear-gradient(110deg,#241d30,#33263c)}.blob{position:absolute;width:65vw;height:65vw;border-radius:50%;filter:blur(25px);pointer-events:none}.b1{left:-42%;top:20%;background:radial-gradient(circle,#9e608336,transparent 66%)}.b2{right:-18%;top:-20%;background:radial-gradient(circle,#aa759745,transparent 65%)}.b3{left:20%;top:55%;background:radial-gradient(circle,#72619920,transparent 65%)}.b4{right:-10%;top:80%;background:radial-gradient(circle,#b3927420,transparent 65%)}.scrim{position:absolute;inset:0;background:#241d30;opacity:.1}.nav{display:flex;justify-content:space-between;align-items:center;height:102px;border-bottom:1px solid #ffffff17}.brand{font:400 32px/1 var(--display);letter-spacing:-.045em;text-decoration:none;display:flex;align-items:center;gap:10px}.brand-icon{font-family:Georgia;font-size:29px;color:#e5b9c6}.nav-links{display:flex;gap:36px;align-items:center;font-size:13px}.nav-links a{text-decoration:none;color:#d3c9d8}.nav-links a:hover{color:white}.nav-cta{border:1px solid #d0becb60;padding:10px 20px;border-radius:30px}.hero{display:grid;grid-template-columns:1.02fr 1fr;align-items:center;gap:25px;padding:79px 0 87px}.hero .eyebrow{color:#d9b8c7;display:flex;align-items:center;gap:12px}.hero .eyebrow:before{content:"";width:25px;height:1px;background:#d9b8c7}h1,h2,h3,p{margin-top:0}h1{font:400 clamp(56px,5.65vw,80px)/1.07 var(--display);letter-spacing:-.05em;margin:24px 0;max-width:none}h1 em,h2 em{font-weight:400;color:#e7b6c6}h1 em{white-space:nowrap}.lede{font-size:16px;line-height:1.85;color:#c9bdce;max-width:390px;margin:0 0 29px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:30px;background:#ead1d8;color:#2d2335;text-decoration:none;border:1px solid transparent;border-radius:6px;font-size:14px;font-weight:600;padding:16px 25px;cursor:pointer;transition:background .2s,transform .2s}.btn:hover{background:#f4e0e6;transform:translateY(-2px)}.btn[disabled]{opacity:.6;cursor:wait;transform:none}.arrow{font-size:20px;line-height:1}.assure{font-size:11px;color:#b5a7bd;margin:15px 0 0;letter-spacing:.02em}.assure span{margin:0 7px;color:#776583}.hero-art{position:relative;min-width:0;display:flex;flex-direction:column;align-items:center;padding-top:18px}.orbital{position:relative;width:100%;aspect-ratio:1.16;display:grid;place-items:center}.orbit-back{position:absolute;width:94%;height:auto;opacity:.6}.charts{position:relative;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 16px #e5a3b720)}.ring-you,.ring-them{transition:transform 1.8s cubic-bezier(.2,.7,.2,1);transform-box:view-box;transform-origin:160px 130px}.ring-them{transform-origin:240px 130px}.charts.apart .ring-you{transform:translateX(-25px) rotate(-20deg)}.charts.apart .ring-them{transform:translateX(25px) rotate(20deg)}.overlap{transition:opacity 1.6s}.charts.apart .overlap{opacity:0}.chart-tag{position:absolute;font-size:10px;text-transform:uppercase;letter-spacing:.16em;display:flex;gap:8px;align-items:center}.chart-tag:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}.tag-you{top:19%;left:12%;color:var(--you)}.tag-them{bottom:18%;right:9%;color:var(--them)}.star{position:absolute;color:#e3c6af}.star.one{top:8%;right:15%;font-size:23px}.star.two{bottom:10%;left:18%;font-size:16px}.art-note{position:relative;margin-top:-30px;background:#ffffff06;border:1px solid #ffffff1c;border-radius:9px;padding:16px 23px;max-width:310px;backdrop-filter:blur(12px)}.art-note .eyebrow{font-size:9px;letter-spacing:.16em;color:#d9bac6;margin-bottom:5px}.art-note p{font:italic 19px/1.45 var(--display);margin:0;color:#eee2e7}.art-caption{font-size:9px;letter-spacing:.11em;color:#a798b0;margin-top:14px;text-transform:uppercase}.hero-foot{display:flex;justify-content:space-between;padding:21px 0;border-top:1px solid #ffffff17;font-size:11px;color:#c5b7cc;letter-spacing:.06em}.hero-foot span{display:flex;align-items:center;gap:10px}.hero-foot b{font-weight:400;color:#ddbac8;font-size:16px}
+.intro{padding:94px 0 82px}.section-heading{text-align:center;max-width:650px;margin:0 auto 46px}.section-heading .eyebrow{color:#8c6678;margin-bottom:17px}h2{font:400 clamp(36px,3.6vw,49px)/1.16 var(--display);letter-spacing:-.035em;margin:0 0 18px}h2 em{color:#96637c}.section-heading p:last-child{color:var(--muted);font-size:14px}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:0}.benefit{padding:5px 33px 0;border-left:1px solid var(--line)}.benefit:first-child{border:0;padding-left:0}.benefit:last-child{padding-right:0}.benefit-icon{height:43px;margin-bottom:18px;color:#98647e;display:block}.benefit h3{font:400 26px/1.2 var(--display);letter-spacing:-.02em;margin-bottom:13px}.benefit p{color:var(--muted);font-size:14px;line-height:1.8;margin-bottom:0}.benefit .number{font-size:10px;letter-spacing:.15em;color:#99838f;margin-bottom:13px;display:block}.reading{padding:0 0 89px;scroll-margin-top:35px}.reading-layout{display:grid;grid-template-columns:.88fr 1.12fr;border:1px solid #dfd7d5;border-radius:14px;overflow:hidden;background:#fffcf7;box-shadow:0 15px 55px #35233608}.reading-story{background:#e9dfe4;padding:49px 42px;position:relative;overflow:hidden}.reading-story>.eyebrow{color:#8a657a;margin-bottom:22px}.reading-story h2{font-size:39px;max-width:10ch}.reading-story>p{font-size:14px;color:#766676}.sample{margin:31px 0 0;background:#302739;color:#f5ede7;border-radius:9px;padding:28px 25px;position:relative}.sample:after{content:"✧";position:absolute;right:20px;top:18px;color:#dfb8c6;font-size:22px}.sample figcaption{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:#d1a8ba;margin-bottom:24px}.sample blockquote{font:400 24px/1.5 var(--display);letter-spacing:-.015em;margin:0}.sample blockquote em{color:#e7b8ca}.sample .insight{font-size:12px;color:#c9bbc9;line-height:1.85;border-top:1px solid #ffffff20;margin:23px 0 0;padding-top:17px}.sample .insight b{color:#e6c5d0;font-weight:500}.sample-label{font-size:10px;color:#84717e;margin:12px 0 0;text-align:center}.form-panel{padding:44px 43px;min-width:0}.form-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}.form-top p{margin:0;font-size:10px;color:#8b6a7d;letter-spacing:.09em;text-transform:uppercase}.form-top span{font-size:10px;color:#8d858c}.progress{height:3px;background:#ebe3e6;margin-bottom:31px;border-radius:4px;overflow:hidden}.progress-fill{height:100%;width:50%;background:#a77690;transition:width .3s}.step h3{font:400 31px/1.25 var(--display);letter-spacing:-.02em;margin-bottom:7px}.step-intro{font-size:12px;color:#827881;margin-bottom:23px}.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 17px}.field{display:flex;flex-direction:column;gap:6px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:12px;color:#504452;font-weight:500}.optional{color:#958895;font-size:10px;font-weight:400}.field input{display:block;min-width:0;width:100%;height:46px;padding:10px 12px;background:#fffefa;border:1px solid #ded6dc;border-radius:5px;font:400 14px var(--body);color:#3c3040;color-scheme:light}.field input:focus{outline:2px solid #a7769080;outline-offset:1px;border-color:#a77690}.field input::placeholder{color:#a398a2}.field input[aria-invalid=true]{border-color:#a33448}.hint{font-size:11px;line-height:1.7;color:#8b7f8a;margin:14px 0 0}.err{font-size:11px;color:var(--error);line-height:1.45}.err:empty{display:none}.actions{display:flex;align-items:center;gap:18px;margin-top:23px}.actions .btn{background:#33293f;color:#fff5f5;flex:1}.actions .btn:hover{background:#59445f}.form-note{text-align:center;font-size:10px;color:#8c7c8d;margin:13px 0 0}.back{border:0;background:none;color:#827183;text-decoration:underline;padding:10px 0;cursor:pointer;font-size:12px}.consent{display:flex;gap:10px;align-items:flex-start;font-size:10px;line-height:1.65;color:#817380;margin:18px 0 0}.consent input{accent-color:#8c617c;width:16px;height:16px;flex-shrink:0;margin:2px 0}.form-status{font-size:12px;margin:13px 0 0}.form-status.error{color:var(--error)}.done{display:none;text-align:center;padding:20px 0}.done h3{font:400 31px/1.2 var(--display);margin:10px 0}.done p{font-size:13px;color:#817380;overflow-wrap:anywhere}.syn{width:100%;max-width:330px;overflow:visible}.syn-you,.syn-them{transition:transform 1.5s;transform-box:view-box;transform-origin:165px 112px}.syn-them{transform-origin:235px 112px}.syn.apart .syn-you{transform:translateX(-25px) rotate(-25deg)}.syn.apart .syn-them{transform:translateX(25px) rotate(25deg)}.syn-glow{opacity:0;transition:opacity 1s}.syn.glow .syn-glow{opacity:.2}.syn-line{fill:none;stroke:#a77690;stroke-width:1;stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset .7s}.syn.linked .syn-line{stroke-dashoffset:0}.syn-name{font:500 13px var(--body);opacity:0;transition:opacity .8s}.syn.named .syn-name{opacity:1}.syn-status{min-height:1.6em}.done-text{opacity:0;transition:opacity .8s}.done-text.show{opacity:1}
+.coming{padding:72px 0;background:#ece7df;border-top:1px solid #e2dbd2}.coming-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:75px}.coming .eyebrow{color:#957083;margin-bottom:20px}.coming h2{font-size:43px;max-width:10ch}.coming-copy{color:#827880;font-size:13px;max-width:290px}.roadmap{display:grid;gap:24px}.roadmap-item{display:grid;grid-template-columns:35px 1fr;gap:18px;border-bottom:1px solid #dbd4ce;padding-bottom:22px}.roadmap-item:last-child{border:0;padding-bottom:0}.roadmap-item>span{font:italic 21px var(--display);color:#a07b8e}.roadmap-item h3{font-size:15px;font-weight:500;margin-bottom:6px}.roadmap-item p{font-size:13px;color:#817780;line-height:1.75;margin:0}.faq{padding:82px 0}.faq-layout{display:grid;grid-template-columns:.9fr 1.1fr;gap:75px}.faq .eyebrow{color:#937083;margin-bottom:20px}.faq h2{font-size:42px;max-width:10ch}.faq details{border-bottom:1px solid var(--line);padding:19px 0}.faq details:first-child{padding-top:0}.faq summary{cursor:pointer;font-size:14px;list-style:none;display:flex;justify-content:space-between;gap:15px}.faq summary::-webkit-details-marker{display:none}.faq summary:after{content:"+";font-size:20px;color:#947485;line-height:1}.faq details[open] summary:after{content:"−"}.faq details p{font-size:13px;color:#817780;margin:13px 22px 0 0}.closing{text-align:center;padding:60px 20px 65px;background:#e5d6de}.closing .eyebrow{color:#8b657b;margin-bottom:15px}.closing h2{font-size:48px}.closing .btn{background:#33293f;color:#f6eaf0;margin-top:5px}.closing .btn:hover{background:#59445f}footer{background:var(--dusk);color:#af9fb8;padding:38px 0 27px}.footer-top{display:flex;justify-content:space-between;align-items:center;padding-bottom:26px;border-bottom:1px solid #ffffff15;margin-bottom:22px}.footer-top .brand{font-size:27px;color:#f1e6e5}.footer-top p{font:italic 18px var(--display);margin:0;color:#cbb8cc}.footer-bottom{display:flex;justify-content:space-between;gap:50px}.footer-bottom p{font-size:10px;max-width:660px;line-height:1.8;margin:0 0 5px}.footer-bottom>a{font-size:10px;white-space:nowrap}.copyright{font-size:9px;opacity:.7;margin-top:18px}.skip-link{position:absolute;top:-80px;left:20px;z-index:10;padding:10px;background:#fff;color:#241d30}.skip-link:focus{top:10px}
+@media(min-width:1500px){.hero{padding-top:100px;padding-bottom:105px}}
+@media(max-width:900px){.wrap{width:calc(100% - 56px)}.nav-links{gap:20px}.hero{gap:0;padding:55px 0 65px}h1{font-size:59px}.lede{font-size:14px}.art-note{max-width:260px;padding:14px 19px}.art-note p{font-size:17px}.reading-story,.form-panel{padding:33px 26px}.sample{padding:24px 20px}.sample blockquote{font-size:21px}.coming-layout,.faq-layout{gap:45px}.benefit{padding-left:22px;padding-right:22px}.benefit h3{font-size:23px}}
+@media(max-width:650px){.wrap{width:calc(100% - 40px)}.nav{height:78px}.brand{font-size:28px}.nav-links>a:not(.nav-cta){display:none}.nav-cta{padding:8px 14px;font-size:11px}.hero{grid-template-columns:1fr;padding:43px 0 31px;gap:4px;text-align:center}.hero .eyebrow{justify-content:center;font-size:9px}.hero .eyebrow:before{width:18px}h1{font-size:clamp(52px,13vw,70px);max-width:none;margin:21px auto}.lede{max-width:340px;margin:0 auto 24px;font-size:14px;line-height:1.8}.btn{padding:15px 23px;font-size:13px}.assure{font-size:10px}.hero-art{width:100%;max-width:390px;margin:6px auto 0;padding-top:0}.orbital{aspect-ratio:1.35}.chart-tag{font-size:8px}.tag-you{top:15%}.tag-them{bottom:15%}.art-note{margin-top:-15px;max-width:280px}.art-note p{font-size:18px}.art-caption{margin-top:11px;font-size:8px}.hero-foot{font-size:9px;gap:8px;padding:17px 0;justify-content:center;flex-wrap:wrap}.hero-foot span{gap:5px}.hero-foot b{font-size:12px}.intro{padding:58px 0}.section-heading{margin-bottom:35px}h2{font-size:36px}.section-heading p:last-child{font-size:13px}.benefits{grid-template-columns:1fr;gap:24px}.benefit,.benefit:first-child,.benefit:last-child{padding:0 0 23px;border:0;border-bottom:1px solid var(--line);position:relative;padding-left:57px}.benefit:last-child{border:0;padding-bottom:0}.benefit-icon{position:absolute;left:0;top:2px;width:34px}.benefit .number{margin-bottom:7px;font-size:9px}.benefit h3{font-size:26px;margin-bottom:9px}.benefit p{font-size:13px}.reading{padding-bottom:55px}.reading-layout{grid-template-columns:1fr}.reading-story{padding:30px 25px}.reading-story h2{max-width:none;font-size:34px}.reading-story>.eyebrow{margin-bottom:15px}.reading-story>p{margin-bottom:0;font-size:13px}.sample{margin-top:22px;padding:24px}.sample blockquote{font-size:24px}.sample .insight{font-size:12px}.form-panel{padding:30px 24px 33px}.field-grid{gap:15px 12px}.field input{font-size:16px}.step h3{font-size:29px}.coming{padding:49px 0}.coming-layout,.faq-layout{grid-template-columns:1fr;gap:24px}.coming h2,.faq h2{max-width:none;font-size:35px}.coming-copy{max-width:none}.coming .eyebrow,.faq .eyebrow{margin-bottom:13px}.roadmap{gap:20px}.roadmap-item{gap:8px}.faq{padding:50px 0}.faq-layout{gap:8px}.closing{padding:45px 20px 48px}.closing h2{font-size:37px}.footer-top{gap:15px}.footer-top p{font-size:14px}.footer-bottom{display:block}.footer-bottom>a{display:inline-block;margin-top:9px}footer{padding-top:30px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.btn:hover{transform:none}}
 
-  /* Blurred sky: soft color blobs behind everything, shifting as you scroll */
-  .sky {
-    position: fixed; inset: 0; z-index: -1; overflow: hidden;
-    background: linear-gradient(180deg, #35244C 0%, #2A1B38 50%, #231630 100%);
-  }
-  .blob {
-    position: absolute; width: 75vmax; height: 75vmax; border-radius: 50%;
-    will-change: transform, opacity;
-  }
-  .b1 { left: -30vmax; top: -22vmax; background: radial-gradient(closest-side, rgba(229,143,168,.40), rgba(229,143,168,0)); }
-  .b2 { right: -32vmax; top: -6vmax;  background: radial-gradient(closest-side, rgba(159,180,240,.34), rgba(159,180,240,0)); }
-  .b3 { left: -34vmax; top: 40vmax;   background: radial-gradient(closest-side, rgba(185,162,216,.26), rgba(185,162,216,0)); }
-  .b4 { right: -36vmax; top: 64vmax;  background: radial-gradient(closest-side, rgba(233,216,166,.13), rgba(233,216,166,0)); opacity: .4; }
-  .scrim { position: absolute; inset: 0; background: rgb(42,27,56); opacity: .32; will-change: opacity; }
+/* Slow, independent orbits. Labels and surrounding copy stay still. */
+.chart-spin,.satellite{transform-box:view-box}
+.spin-you{transform-origin:160px 130px;animation:chart-turn 80s linear infinite}
+.spin-them{transform-origin:240px 130px;animation:chart-turn 96s linear infinite reverse}
+.satellite-you{transform-origin:160px 130px;animation:chart-turn 20s linear infinite;animation-delay:-3s}
+.satellite-them{transform-origin:240px 130px;animation:chart-turn 26s linear infinite reverse;animation-delay:-9s}
+.center-star{transform-box:fill-box;transform-origin:center;animation:star-breathe 5s ease-in-out infinite}
+.connection-glow{animation:connection-breathe 7s ease-in-out infinite}
+.star.one{animation:small-twinkle 6s ease-in-out infinite}
+.star.two{animation:small-twinkle 7s ease-in-out infinite;animation-delay:-3s}
+.motion-control{display:flex;align-items:center;gap:7px;margin:0 auto;color:#b8a7c1;font-size:10px;cursor:pointer;line-height:1.5}
+.motion-control input{width:12px;height:12px;accent-color:#c995ae;margin:0}
+.hero-art:has(.motion-control input:checked) .orbital *{animation-play-state:paused!important}
+.hero-art.motion-paused .orbital *{animation-play-state:paused!important}
+@keyframes chart-turn{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes star-breathe{0%,100%{transform:scale(.92);opacity:.65}50%{transform:scale(1.12);opacity:1}}
+@keyframes connection-breathe{0%,100%{opacity:.4}50%{opacity:.95}}
+@keyframes small-twinkle{0%,100%{opacity:.4}50%{opacity:.9}}
+@media(prefers-reduced-motion:reduce){.chart-spin,.satellite,.center-star,.connection-glow,.star.one,.star.two{animation:none!important}.motion-control{display:none}}
 
-  a { color: var(--mist); }
-  :focus-visible { outline: 2px solid var(--star); outline-offset: 3px; }
+h1{letter-spacing:-.02em}h2{letter-spacing:-.01em}.brand{letter-spacing:-.01em}
+/* Readability floor for phones: nothing important below 12px */
+.assure,.form-note,.hint,.err,.sample-label,.footer-bottom p,.footer-bottom>a,.copyright,.art-caption,.form-top p,.form-top span,.optional,.benefit .number,.chart-tag,.motion-control{font-size:12.5px!important}
+.consent{font-size:13px!important}
+.eyebrow,.hero .eyebrow,.art-note .eyebrow,.sample figcaption{font-size:11.5px!important}
+@media(max-width:650px){.chart-tag{font-size:10px!important}.tag-you{top:0;left:2%}.tag-them{bottom:0;right:2%}.form-panel{order:-1}}
+.tag-you{top:4%;left:4%}.tag-them{bottom:4%;right:4%}
 
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+/* Hero art: give the chart, quote and caption room to breathe */
+.art-note .eyebrow{font:600 11px/1.6 var(--body)!important;font-style:normal!important;letter-spacing:.14em;display:block;margin-bottom:8px}
+.art-note .eyebrow:before{display:none!important}
+.art-caption{text-transform:none!important;letter-spacing:.01em!important;font-style:italic;font-size:12.5px!important;opacity:.85;margin-top:14px!important}
+.motion-control{font-size:11.5px!important;opacity:.75;margin-top:12px!important}
+@media(max-width:650px){
+  .tag-them{top:0;bottom:auto;right:2%}
+  .orbital{margin-bottom:6px}
+  .art-note{margin-top:22px!important;padding:18px 20px!important}
+  .hero-foot{margin-top:18px}
+}
 
-  /* Hero */
-  .hero { padding: 40px 0 56px; text-align: center; }
-  .brand { font-family: var(--display); font-size: 22px; letter-spacing: 0.02em; margin: 0 0 12px; }
-  .charts { width: 100%; max-width: 440px; height: auto; display: block; margin: 0 auto 8px; }
-  .ring-you, .ring-them { transition: transform 1.8s cubic-bezier(.2,.7,.2,1); transform-box: view-box; }
-  .charts.apart .ring-you { transform: translateX(-46px) rotate(-30deg); transform-origin: 160px 130px; }
-  .charts.apart .ring-them { transform: translateX(46px) rotate(30deg); transform-origin: 240px 130px; }
-  .ring-you { transform-origin: 160px 130px; }
-  .ring-them { transform-origin: 240px 130px; }
-  .overlap { transition: opacity 1.2s ease 1.2s; }
-  .charts.apart .overlap { opacity: 0; }
+/* Labels for the two rings: one quiet legend under the chart instead of tags on the artwork */
+.chart-tag{display:none!important}
+.chart-legend{display:flex;justify-content:center;gap:26px;margin:4px 0 0;font:500 12.5px var(--body);letter-spacing:.08em;color:#c9bdce}
+.lg{display:inline-flex;align-items:center;gap:8px}
+.lg:before{content:"";width:7px;height:7px;border-radius:50%}
+.lg-you:before{background:var(--you)} .lg-them:before{background:var(--them)}
+.art-note{margin-top:14px!important}
+@media(max-width:650px){.art-note{margin-top:16px!important}.orbital{margin-bottom:0}}
 
-  h1 {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(36px, 8vw, 58px);
-    line-height: 1.08;
-    letter-spacing: -0.01em;
-    margin: 0 auto 18px;
-    max-width: 14ch;
-  }
-  .lede { color: var(--mist-soft); max-width: 34em; margin: 0 auto 28px; }
+/* Phones: keep the hero to headline, one line of copy, the button and the chart */
+.m-only{display:none}
+@media(max-width:650px){
+  .d-only{display:none}.m-only{display:inline}
+  .hero .eyebrow,.art-note .eyebrow,.art-caption,.motion-control,.hero-foot,.form-top span,#step1 .hint,.form-note{display:none!important}
+  .art-note p:not(.eyebrow){font-size:20px!important}
+  .hero h1{margin-top:6px}
+}
 
-  .btn {
-    display: inline-block;
-    font: 600 17px/1 var(--body);
-    color: var(--dusk);
-    background: var(--mist);
-    border: 0;
-    border-radius: 999px;
-    padding: 17px 30px;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  .btn:hover { background: #fff; }
-  .btn-big { font-size: 18px; padding: 19px 36px; box-shadow: 0 0 0 6px rgba(243,220,227,.10); }
-  .assure { margin: 16px auto 0; font-size: 15px; color: var(--mist); max-width: 30em; }
+/* Dark-to-cream handoff: rounded hero edge, real space before the form card, quieter step label */
+.hero-shell{border-radius:0 0 34px 34px}
+.reading{padding-top:56px!important}
+.form-top p{text-transform:none!important;letter-spacing:.01em!important;font-style:italic;font-size:13.5px!important;color:#8b7f8a!important}
+@media(max-width:650px){
+  .hero-shell{border-radius:0 0 26px 26px}
+  .reading{padding-top:30px!important}
+  .form-top{display:none!important}
+  .progress{margin-top:2px}
+}
 
-  .sample {
-    margin: 0 0 32px; padding: 20px 22px;
-    border-radius: 18px;
-    border: 1px solid rgba(255,255,255,.14);
-    border-left: 3px solid var(--you);
-    background: rgba(54,36,74,.55);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
-  }
-  .sample figcaption { font-size: 14px; color: var(--mist-soft); margin-bottom: 8px; }
-  .sample blockquote { margin: 0; font-family: var(--display); font-size: 19px; line-height: 1.5; }
-  .btn[disabled] { opacity: .6; cursor: wait; }
+/* Form fields: one height for every input, and stop iPhone date/time pickers from sizing themselves */
+.field input{box-sizing:border-box;height:50px!important;min-height:50px;padding:13px 14px!important;font-size:16px!important;line-height:22px!important;-webkit-appearance:none;appearance:none;border-radius:6px}
+.field input[type=date],.field input[type=time]{display:block;width:100%!important;max-width:100%;min-width:0;text-align:left}
+.field input::-webkit-date-and-time-value{text-align:left;margin:0;padding:0;line-height:22px}
+.field input::-webkit-datetime-edit{padding:0;line-height:22px}
+.field input::-webkit-calendar-picker-indicator{opacity:.55}
 
-  /* Form */
-  .reading { padding: 8px 0 64px; }
-  h2 {
-    font-family: var(--display);
-    font-weight: 400;
-    font-size: clamp(28px, 5.5vw, 38px);
-    line-height: 1.15;
-    margin: 0 0 10px;
-  }
-  .reading > .wrap > p { color: var(--mist-soft); margin: 0 0 28px; }
-
-  form { display: grid; gap: 28px; }
-  .people { display: grid; gap: 20px; }
-  @media (min-width: 640px) { .people { grid-template-columns: 1fr 1fr; } }
-
-  fieldset {
-    margin: 0;
-    padding: 20px;
-    border: 1px solid rgba(255,255,255,.14);
-    border-radius: 18px;
-    background: rgba(54,36,74,.55);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
-  }
-  fieldset.you { border-top: 3px solid var(--you); }
-  fieldset.them { border-top: 3px solid var(--them); }
-  legend { font-family: var(--display); font-size: 21px; padding: 0 6px; }
-
-  .field { display: grid; gap: 6px; margin-bottom: 14px; }
-  .field:last-child { margin-bottom: 0; }
-  label { font-size: 15px; font-weight: 500; }
-  .hint { font-size: 13.5px; color: var(--mist-soft); }
-  input[type=text], input[type=email], input[type=date], input[type=time] {
-    width: 100%;
-    font: 400 16px var(--body);
-    color: var(--mist);
-    background: rgba(35,22,48,.6);
-    border: 1px solid rgba(243,220,227,.25);
-    border-radius: 10px;
-    padding: 12px 12px;
-    color-scheme: dark;
-  }
-  input::placeholder { color: #8f7a93; }
-  input[aria-invalid=true] { border-color: var(--error); }
-  .err { font-size: 13.5px; color: var(--error); min-height: 0; }
-
-  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: 14.5px; color: var(--mist-soft); }
-  .consent input { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--you); }
-
-  .form-status { font-size: 15px; }
-  .form-status.error { color: var(--error); }
-
-  .done {
-    display: none;
-    padding: 28px;
-    border-radius: 18px;
-    background: rgba(54,36,74,.55);
-    -webkit-backdrop-filter: blur(20px) saturate(140%);
-    backdrop-filter: blur(20px) saturate(140%);
-    border: 1px solid rgba(255,255,255,.14);
-  }
-  .done h3 { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: 1.2; margin: 0 0 8px; }
-  .done { scroll-margin-top: 24px; text-align: center; }
-  .syn { width: 100%; max-width: 380px; height: auto; display: block; margin: 0 auto 6px; overflow: visible; }
-  .syn-you, .syn-them { transition: transform 1.5s cubic-bezier(.2,.7,.2,1); transform-box: view-box; }
-  .syn-you { transform-origin: 165px 112px; }
-  .syn-them { transform-origin: 235px 112px; }
-  .syn.apart .syn-you { transform: translateX(-70px) rotate(-40deg); }
-  .syn.apart .syn-them { transform: translateX(70px) rotate(40deg); }
-  .syn-glow { opacity: 0; transition: opacity 1s ease; }
-  .syn.glow .syn-glow { opacity: .28; animation: synPulse 2.4s ease-in-out infinite; }
-  @keyframes synPulse { 0%,100% { opacity: .18; } 50% { opacity: .34; } }
-  .syn-line { fill: none; stroke: #E9D8A6; stroke-width: 1.4; stroke-linecap: round;
-    stroke-dasharray: 1; stroke-dashoffset: 1; opacity: .9; transition: stroke-dashoffset .7s ease; }
-  .syn.linked .syn-line { stroke-dashoffset: 0; }
-  .syn-name { font: 500 15px var(--body); opacity: 0; transition: opacity .8s ease; }
-  .syn.named .syn-name { opacity: 1; }
-  .syn-status { min-height: 1.6em; margin: 0 0 4px; color: var(--mist-soft); font-size: 15px; transition: opacity .4s ease; }
-  .done-text { opacity: 0; transform: translateY(8px); transition: opacity .8s ease, transform .8s ease; }
-  .done-text.show { opacity: 1; transform: none; }
-  @media (prefers-reduced-motion: reduce) {
-    .syn-you, .syn-them, .syn-line, .syn-name, .done-text, .syn-glow { transition: none; }
-    .syn.glow .syn-glow { animation: none; }
-  }
-  .done p { margin: 0; color: var(--mist-soft); }
-
-  /* What's coming */
-  .coming { padding: 56px 0; border-top: 1px solid rgba(243,220,227,.12); }
-  .coming ul { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 22px; }
-  .coming li { padding-left: 28px; position: relative; }
-  .coming li::before {
-    content: ""; position: absolute; left: 4px; top: 9px;
-    width: 9px; height: 9px; border-radius: 50%; background: var(--star);
-  }
-  .coming strong { display: block; font-weight: 600; }
-  .coming span { color: var(--mist-soft); }
-
-  .pricing { padding: 0 0 56px; }
-  .pricing p { color: var(--mist-soft); margin: 10px 0 0; max-width: 36em; }
-
-  footer { padding: 28px 0 40px; border-top: 1px solid rgba(243,220,227,.12); font-size: 13.5px; color: var(--mist-soft); }
-  footer p { margin: 0 0 8px; }
-
-  @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    .ring-you, .ring-them, .overlap { transition: none; }
-  }
+/* Birth-city suggestions */
+.field{position:relative}
+#you_place,#them_place{scroll-margin-top:110px}
+.city-list{position:absolute;left:0;right:0;z-index:30;margin:4px 0 0;padding:6px;list-style:none;background:#fffcf7;
+  border:1px solid #d8cbd3;border-radius:12px;box-shadow:0 14px 34px rgba(40,25,50,.16);max-height:290px;overflow:auto}
+.city-list li{padding:12px 12px;border-radius:8px;font:15px/1.35 var(--body);color:#302938;cursor:pointer}
+.city-list li[aria-selected=true],.city-list li:hover{background:#f0e5eb}
+.city-list li b{font-weight:700}
+.city-list li.none{color:#8b7f8a;cursor:default;background:none;font-style:italic}
 </style>
 </head>
-<body>
-<div class="sky" aria-hidden="true">
-  <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div>
-  <div class="scrim"></div>
-</div>
 
-<header class="hero">
-  <div class="wrap">
-    <p class="brand">Amorbit</p>
-
-    <svg class="charts apart" id="charts" viewBox="0 0 400 260" role="img"
-         aria-label="Two birth charts drawn as rings, overlapping in the middle">
-      <defs>
-        <clipPath id="clipYou"><circle cx="160" cy="130" r="95"/></clipPath>
-      </defs>
-      <circle class="overlap" cx="240" cy="130" r="95" clip-path="url(#clipYou)" fill="#B9A2D8" fill-opacity=".22"/>
-      <g class="ring-you" id="ringYou"></g>
-      <g class="ring-them" id="ringThem"></g>
-    </svg>
-
-    <h1>See what happens where your charts overlap</h1>
-    <p class="lede">Amorbit reads your birth chart against theirs, then tells you each morning what the day holds for the two of you.</p>
-    <a class="btn btn-big" href="#reading">Get our free reading</a>
-    <p class="assure">Free. No card, no app to download. Lands in your inbox in minutes.</p>
-  </div>
-</header>
-
-<main>
-  <section class="reading" id="reading">
-    <div class="wrap">
-      <h2>Your free compatibility reading</h2>
-      <p>It costs nothing. Enter both birthdays and we'll email a short reading of how your charts fit together. No card needed, ever.</p>
-
-      <figure class="sample">
-        <figcaption>What a free reading sounds like</figcaption>
-        <blockquote>Your Venus lands close to their Mars, so the pull you both felt early on has a real basis. Your Moons sit far apart, though: you recharge alone, they recharge together. Say that out loud before it turns into a fight.</blockquote>
-      </figure>
-
-      <form id="waitlist" novalidate>
-        <div class="people">
-          <fieldset class="you">
-            <legend>You</legend>
-            <div class="field">
-              <label for="you_name">First name</label>
-              <input type="text" id="you_name" name="you_name" autocomplete="given-name" required>
-              <span class="err" id="you_name_err"></span>
-            </div>
-            <div class="field">
-              <label for="you_date">Birth date</label>
-              <input type="date" id="you_date" name="you_date" required>
-              <span class="err" id="you_date_err"></span>
-            </div>
-            <div class="field">
-              <label for="you_time">Birth time</label>
-              <input type="time" id="you_time" name="you_time">
-              <span class="hint">Adds your rising sign. Don't know it? Leave it blank.</span>
-            </div>
-            <div class="field">
-              <label for="you_place">Birth city</label>
-              <input type="text" id="you_place" name="you_place" placeholder="Austin, Texas" required>
-              <span class="err" id="you_place_err"></span>
-            </div>
-          </fieldset>
-
-          <fieldset class="them">
-            <legend>Them</legend>
-            <div class="field">
-              <label for="them_name">First name</label>
-              <input type="text" id="them_name" name="them_name" required>
-              <span class="err" id="them_name_err"></span>
-            </div>
-            <div class="field">
-              <label for="them_date">Birth date</label>
-              <input type="date" id="them_date" name="them_date" required>
-              <span class="err" id="them_date_err"></span>
-            </div>
-            <div class="field">
-              <label for="them_time">Birth time</label>
-              <input type="time" id="them_time" name="them_time">
-              <span class="hint">Adds their rising sign. Leave blank if you're not sure.</span>
-            </div>
-            <div class="field">
-              <label for="them_place">Birth city</label>
-              <input type="text" id="them_place" name="them_place" placeholder="Leave blank if unknown">
-            </div>
-          </fieldset>
-        </div>
-
-        <div class="field">
-          <label for="email">Where should we send your reading?</label>
-          <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required>
-          <span class="err" id="email_err"></span>
-        </div>
-
-        <label class="consent">
-          <input type="checkbox" id="consent" name="consent" required>
-          <span>Email me my reading and tell me when Amorbit launches. I can unsubscribe anytime.</span>
-        </label>
-        <span class="err" id="consent_err"></span>
-
-        <div>
-          <button class="btn btn-big" type="submit" id="submitBtn">Send our free reading</button>
-          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
-        </div>
-      </form>
-
-      <div class="done" id="done" tabindex="-1">
+<body><a class="skip-link" href="#reading">Skip to your reading</a>
+<div class="hero-shell" id="top">
+<div class="sky" aria-hidden="true"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="blob b4"></div><div class="scrim"></div></div>
+<div class="wrap"><nav class="nav" aria-label="Main navigation"><a class="brand" href="#top"><span class="brand-icon" aria-hidden="true">✧</span>amorbit</a><div class="nav-links"><a href="#connection">The connection</a><a href="#ahead">What's ahead</a><a class="nav-cta" href="#reading">Find your chemistry <span aria-hidden="true">&#x2197;&#xFE0E;</span></a></div></nav>
+<header class="hero"><div class="hero-copy"><p class="eyebrow">Astrology for the two of you</p><h1>A little less<br>“why?”<br>A little <em>more us.</em></h1><p class="lede"><span class="d-only">The spark. The mixed signals. The same old argument. See what both birth charts, calculated from NASA planetary data, say about the way you connect.</span><span class="m-only">The spark. The mixed signals. The same old argument. See what your two birth charts say.</span></p><a class="btn" href="#reading">Get our free reading <span class="arrow" aria-hidden="true">&#x2197;&#xFE0E;</span></a><p class="assure"><span class="d-only">Two charts. One connection. <span>·</span> No card needed.</span><span class="m-only">Free <span>·</span> NASA planetary data <span>·</span> No card</span></p></div>
+<div class="hero-art"><div class="orbital"><svg class="orbit-back" viewBox="0 0 480 410" fill="none" aria-hidden="true"><ellipse cx="240" cy="205" rx="225" ry="177" stroke="#dbb9c5" stroke-opacity=".14"/><ellipse cx="240" cy="205" rx="205" ry="156" stroke="#dbb9c5" stroke-opacity=".12" stroke-dasharray="2 8"/><path d="M22 205h436M240 19v372" stroke="#dbb9c5" stroke-opacity=".08"/><circle cx="78" cy="81" r="2" fill="#d5afbb"/><circle cx="407" cy="311" r="2" fill="#d5afbb"/></svg><svg class="charts" id="charts" viewBox="0 0 400 260" role="img" aria-label="Illustration of two overlapping birth charts"><defs><clipPath id="clipYou"><circle cx="160" cy="130" r="95"/></clipPath><radialGradient id="overlapGlow"><stop stop-color="#e4b4c5" stop-opacity=".35"/><stop offset="1" stop-color="#b9a2d8" stop-opacity=".06"/></radialGradient></defs><circle class="overlap connection-glow" cx="240" cy="130" r="95" clip-path="url(#clipYou)" fill="url(#overlapGlow)"/><g class="ring-you" id="ringYou"><g class="chart-spin spin-you"><circle cx="160" cy="130" r="95" fill="none" stroke="#E5A3B7" stroke-width="1.3" stroke-opacity=".85"/><circle cx="160" cy="130" r="72" fill="none" stroke="#E5A3B7" stroke-opacity=".4" stroke-width=".8"/><line x1="232.000" y1="130.000" x2="255.000" y2="130.000" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="250.501" y1="139.512" x2="254.480" y2="139.930" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="249.011" y1="148.920" x2="252.924" y2="149.752" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="246.546" y1="158.121" x2="250.350" y2="159.357" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="243.133" y1="167.013" x2="246.787" y2="168.640" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="222.354" y1="166.000" x2="242.272" y2="177.500" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="233.621" y1="183.488" x2="236.857" y2="185.840" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="227.626" y1="190.891" x2="230.599" y2="193.567" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="220.891" y1="197.626" x2="223.567" y2="200.599" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="213.488" y1="203.621" x2="215.840" y2="206.857" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="196.000" y1="192.354" x2="207.500" y2="212.272" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="197.013" y1="213.133" x2="198.640" y2="216.787" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="188.121" y1="216.546" x2="189.357" y2="220.350" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="178.920" y1="219.011" x2="179.752" y2="222.924" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="169.512" y1="220.501" x2="169.930" y2="224.480" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="160.000" y1="202.000" x2="160.000" y2="225.000" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="150.488" y1="220.501" x2="150.070" y2="224.480" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="141.080" y1="219.011" x2="140.248" y2="222.924" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="131.879" y1="216.546" x2="130.643" y2="220.350" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="122.987" y1="213.133" x2="121.360" y2="216.787" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="124.000" y1="192.354" x2="112.500" y2="212.272" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="106.512" y1="203.621" x2="104.160" y2="206.857" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="99.109" y1="197.626" x2="96.433" y2="200.599" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="92.374" y1="190.891" x2="89.401" y2="193.567" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="86.379" y1="183.488" x2="83.143" y2="185.840" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="97.646" y1="166.000" x2="77.728" y2="177.500" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="76.867" y1="167.013" x2="73.213" y2="168.640" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="73.454" y1="158.121" x2="69.650" y2="159.357" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="70.989" y1="148.920" x2="67.076" y2="149.752" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="69.499" y1="139.512" x2="65.520" y2="139.930" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="88.000" y1="130.000" x2="65.000" y2="130.000" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="69.499" y1="120.488" x2="65.520" y2="120.070" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="70.989" y1="111.080" x2="67.076" y2="110.248" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="73.454" y1="101.879" x2="69.650" y2="100.643" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="76.867" y1="92.987" x2="73.213" y2="91.360" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="97.646" y1="94.000" x2="77.728" y2="82.500" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="86.379" y1="76.512" x2="83.143" y2="74.160" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="92.374" y1="69.109" x2="89.401" y2="66.433" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="99.109" y1="62.374" x2="96.433" y2="59.401" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="106.512" y1="56.379" x2="104.160" y2="53.143" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="124.000" y1="67.646" x2="112.500" y2="47.728" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="122.987" y1="46.867" x2="121.360" y2="43.213" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="131.879" y1="43.454" x2="130.643" y2="39.650" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="141.080" y1="40.989" x2="140.248" y2="37.076" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="150.488" y1="39.499" x2="150.070" y2="35.520" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="160.000" y1="58.000" x2="160.000" y2="35.000" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="169.512" y1="39.499" x2="169.930" y2="35.520" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="178.920" y1="40.989" x2="179.752" y2="37.076" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="188.121" y1="43.454" x2="189.357" y2="39.650" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="197.013" y1="46.867" x2="198.640" y2="43.213" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="196.000" y1="67.646" x2="207.500" y2="47.728" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="213.488" y1="56.379" x2="215.840" y2="53.143" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="220.891" y1="62.374" x2="223.567" y2="59.401" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="227.626" y1="69.109" x2="230.599" y2="66.433" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="233.621" y1="76.512" x2="236.857" y2="74.160" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="222.354" y1="94.000" x2="242.272" y2="82.500" stroke="#E5A3B7" stroke-opacity=".48" stroke-width=".8"/><line x1="243.133" y1="92.987" x2="246.787" y2="91.360" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="246.546" y1="101.879" x2="250.350" y2="100.643" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="249.011" y1="111.080" x2="252.924" y2="110.248" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><line x1="250.501" y1="120.488" x2="254.480" y2="120.070" stroke="#E5A3B7" stroke-opacity=".3" stroke-width=".8"/><circle cx="241.186" cy="147.257" r="3.5" fill="#E5A3B7"/><circle cx="203.983" cy="200.388" r="2.2" fill="#E5A3B7"/><circle cx="105.547" cy="192.641" r="2.2" fill="#E5A3B7"/><circle cx="84.176" cy="96.241" r="2.2" fill="#E5A3B7"/><circle cx="188.388" cy="52.006" r="2.2" fill="#E5A3B7"/><circle cx="236.402" cy="97.569" r="2.2" fill="#E5A3B7"/></g><g class="satellite satellite-you"><circle cx="160" cy="130" r="95" fill="none" stroke="#E5A3B7" stroke-opacity=".28" stroke-width="2" stroke-dasharray="28 569" transform="rotate(-17 160 130)"/><circle cx="255" cy="130" r="7" fill="#E5A3B7" opacity=".1"/><circle cx="255" cy="130" r="3" fill="#E5A3B7"/><circle cx="255" cy="130" r="1.2" fill="#fff4e8"/></g></g><g class="ring-them" id="ringThem"><g class="chart-spin spin-them"><circle cx="240" cy="130" r="95" fill="none" stroke="#ADBCEC" stroke-width="1.3" stroke-opacity=".85"/><circle cx="240" cy="130" r="72" fill="none" stroke="#ADBCEC" stroke-opacity=".4" stroke-width=".8"/><line x1="312.000" y1="130.000" x2="335.000" y2="130.000" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="330.501" y1="139.512" x2="334.480" y2="139.930" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="329.011" y1="148.920" x2="332.924" y2="149.752" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="326.546" y1="158.121" x2="330.350" y2="159.357" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="323.133" y1="167.013" x2="326.787" y2="168.640" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="302.354" y1="166.000" x2="322.272" y2="177.500" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="313.621" y1="183.488" x2="316.857" y2="185.840" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="307.626" y1="190.891" x2="310.599" y2="193.567" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="300.891" y1="197.626" x2="303.567" y2="200.599" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="293.488" y1="203.621" x2="295.840" y2="206.857" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="276.000" y1="192.354" x2="287.500" y2="212.272" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="277.013" y1="213.133" x2="278.640" y2="216.787" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="268.121" y1="216.546" x2="269.357" y2="220.350" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="258.920" y1="219.011" x2="259.752" y2="222.924" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="249.512" y1="220.501" x2="249.930" y2="224.480" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="240.000" y1="202.000" x2="240.000" y2="225.000" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="230.488" y1="220.501" x2="230.070" y2="224.480" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="221.080" y1="219.011" x2="220.248" y2="222.924" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="211.879" y1="216.546" x2="210.643" y2="220.350" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="202.987" y1="213.133" x2="201.360" y2="216.787" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="204.000" y1="192.354" x2="192.500" y2="212.272" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="186.512" y1="203.621" x2="184.160" y2="206.857" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="179.109" y1="197.626" x2="176.433" y2="200.599" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="172.374" y1="190.891" x2="169.401" y2="193.567" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="166.379" y1="183.488" x2="163.143" y2="185.840" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="177.646" y1="166.000" x2="157.728" y2="177.500" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="156.867" y1="167.013" x2="153.213" y2="168.640" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="153.454" y1="158.121" x2="149.650" y2="159.357" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="150.989" y1="148.920" x2="147.076" y2="149.752" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="149.499" y1="139.512" x2="145.520" y2="139.930" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="168.000" y1="130.000" x2="145.000" y2="130.000" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="149.499" y1="120.488" x2="145.520" y2="120.070" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="150.989" y1="111.080" x2="147.076" y2="110.248" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="153.454" y1="101.879" x2="149.650" y2="100.643" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="156.867" y1="92.987" x2="153.213" y2="91.360" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="177.646" y1="94.000" x2="157.728" y2="82.500" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="166.379" y1="76.512" x2="163.143" y2="74.160" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="172.374" y1="69.109" x2="169.401" y2="66.433" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="179.109" y1="62.374" x2="176.433" y2="59.401" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="186.512" y1="56.379" x2="184.160" y2="53.143" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="204.000" y1="67.646" x2="192.500" y2="47.728" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="202.987" y1="46.867" x2="201.360" y2="43.213" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="211.879" y1="43.454" x2="210.643" y2="39.650" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="221.080" y1="40.989" x2="220.248" y2="37.076" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="230.488" y1="39.499" x2="230.070" y2="35.520" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="240.000" y1="58.000" x2="240.000" y2="35.000" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="249.512" y1="39.499" x2="249.930" y2="35.520" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="258.920" y1="40.989" x2="259.752" y2="37.076" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="268.121" y1="43.454" x2="269.357" y2="39.650" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="277.013" y1="46.867" x2="278.640" y2="43.213" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="276.000" y1="67.646" x2="287.500" y2="47.728" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="293.488" y1="56.379" x2="295.840" y2="53.143" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="300.891" y1="62.374" x2="303.567" y2="59.401" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="307.626" y1="69.109" x2="310.599" y2="66.433" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="313.621" y1="76.512" x2="316.857" y2="74.160" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="302.354" y1="94.000" x2="322.272" y2="82.500" stroke="#ADBCEC" stroke-opacity=".48" stroke-width=".8"/><line x1="323.133" y1="92.987" x2="326.787" y2="91.360" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="326.546" y1="101.879" x2="330.350" y2="100.643" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="329.011" y1="111.080" x2="332.924" y2="110.248" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><line x1="330.501" y1="120.488" x2="334.480" y2="120.070" stroke="#ADBCEC" stroke-opacity=".3" stroke-width=".8"/><circle cx="158.814" cy="147.257" r="3.5" fill="#ADBCEC"/><circle cx="177.359" cy="75.547" r="2.2" fill="#ADBCEC"/><circle cx="319.785" cy="152.878" r="2.2" fill="#ADBCEC"/><circle cx="232.766" cy="212.684" r="2.2" fill="#ADBCEC"/><circle cx="225.587" cy="48.261" r="2.2" fill="#ADBCEC"/><circle cx="295.538" cy="68.319" r="2.2" fill="#ADBCEC"/></g><g class="satellite satellite-them"><circle cx="240" cy="130" r="95" fill="none" stroke="#ADBCEC" stroke-opacity=".28" stroke-width="2" stroke-dasharray="28 569" transform="rotate(-17 240 130)"/><circle cx="335" cy="130" r="7" fill="#ADBCEC" opacity=".1"/><circle cx="335" cy="130" r="3" fill="#ADBCEC"/><circle cx="335" cy="130" r="1.2" fill="#fff4e8"/></g></g><path class="center-star" d="M200 110l3 16 13 4-13 4-3 16-3-16-13-4 13-4z" fill="#f0daca" opacity=".8"/></svg><span class="chart-tag tag-you">Your universe</span><span class="chart-tag tag-them">Their universe</span><span class="star one" aria-hidden="true">✦</span><span class="star two" aria-hidden="true">✧</span></div><div class="chart-legend" aria-hidden="true"><span class="lg lg-you">You</span><span class="lg lg-them">Them</span></div><div class="art-note"><p class="eyebrow">Some chemistry needs a little context.</p><p>“You recharge alone.<br>They reconnect together.”</p></div><p class="art-caption">An illustrative example. Your reading will be your own.</p><label class="motion-control"><input type="checkbox" id="pauseMotion"><span>Pause animation</span></label></div></header>
+<div class="hero-foot"><span><b aria-hidden="true">✧</b> Beyond your sun signs</span><span><b aria-hidden="true">⊙</b> Both birth charts, together</span><span><b aria-hidden="true">&#x2197;&#xFE0E;</b> A fresh perspective on you two</span></div></div></div>
+<main><section class="reading" id="reading"><div class="wrap"><div class="reading-layout"><div class="reading-story"><p class="eyebrow">A small beginning. A new perspective.</p><h2>Meet your<br><em>connection.</em></h2><p>A free compatibility reading, made for the two of you.</p><figure class="sample"><figcaption>A glimpse inside a reading</figcaption><blockquote>“The attraction comes easily.<br><em>Feeling understood</em><br>takes a little translation.”</blockquote><p class="insight">One of you may need space to recharge, while the other looks for closeness.<br><br><b>Try this:</b> “I need a little time to myself. It doesn’t mean I’m pulling away from you.”</p></figure><p class="sample-label">Example only. Your reading is based on your details.</p></div>
+<div class="form-panel"><form id="waitlist" novalidate><div class="form-top"><p id="stepLabel">Step 1 of 2 — Your details</p><span>Let’s start with you</span></div><div class="progress" aria-hidden="true"><div class="progress-fill"></div></div><div class="step" id="step1"><h3>Your side of the story.</h3><p class="step-intro">A few details to find your place in the stars.</p><div class="field-grid"><div class="field full"><label for="you_name">First name</label><input id="you_name" name="you_name" type="text" placeholder="Your first name" autocomplete="given-name" required aria-describedby="you_name_err"><span class="err" id="you_name_err" aria-live="polite"></span></div><div class="field "><label for="you_date">Date of birth</label><input id="you_date" name="you_date" type="date" placeholder="" required aria-describedby="you_date_err"><span class="err" id="you_date_err" aria-live="polite"></span></div><div class="field "><label for="you_time">Time of birth <span class="optional">(optional)</span></label><input id="you_time" name="you_time" type="time" placeholder=""></div><div class="field full"><label for="you_place">City of birth</label><input id="you_place" name="you_place" type="text" placeholder="Start typing, then pick your city" required aria-describedby="you_place_err" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="you_place_list" autocomplete="off" autocapitalize="words" spellcheck="false"><input type="hidden" id="you_place_id" name="you_place_id"><ul class="city-list" id="you_place_list" role="listbox" hidden></ul><span class="err" id="you_place_err" aria-live="polite"></span></div></div><p class="hint">Not sure of your birth time? Leave it blank. You can still get a reading.</p><div class="actions"><button class="btn" type="button" id="nextBtn">Next: their story <span class="arrow" aria-hidden="true">&#x2192;&#xFE0E;</span></button></div><p class="form-note">Free reading. No payment details.</p></div><div class="step" id="step2" hidden><h3>And the other half.</h3><p class="step-intro">The person you’d like to understand a little better.</p><div class="field-grid"><div class="field full"><label for="them_name">Their first name</label><input id="them_name" name="them_name" type="text" placeholder="Their first name" required aria-describedby="them_name_err"><span class="err" id="them_name_err" aria-live="polite"></span></div><div class="field "><label for="them_date">Date of birth</label><input id="them_date" name="them_date" type="date" placeholder="" required aria-describedby="them_date_err"><span class="err" id="them_date_err" aria-live="polite"></span></div><div class="field "><label for="them_time">Time of birth <span class="optional">(optional)</span></label><input id="them_time" name="them_time" type="time" placeholder=""></div><div class="field full"><label for="them_place">City of birth <span class="optional">(optional)</span></label><input id="them_place" name="them_place" type="text" placeholder="Start typing, then pick their city" aria-describedby="them_place_err" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="them_place_list" autocomplete="off" autocapitalize="words" spellcheck="false"><input type="hidden" id="them_place_id" name="them_place_id"><ul class="city-list" id="them_place_list" role="listbox" hidden></ul><span class="err" id="them_place_err" aria-live="polite"></span></div><div class="field full"><label for="email">Send the reading to</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required aria-describedby="email_err"><span class="err" id="email_err" aria-live="polite"></span></div></div><p class="hint">Their city and birth time are optional.</p><label class="consent"><input type="checkbox" id="consent" name="consent" required aria-describedby="consent_err"><span>Email me my reading and tell me when Amorbit launches. I can unsubscribe anytime.</span></label><span class="err" id="consent_err" aria-live="polite"></span><div class="actions"><button class="back" type="button" id="backBtn">Back</button><button class="btn" type="submit" id="submitBtn">Send our free reading <span class="arrow" aria-hidden="true">&#x2197;&#xFE0E;</span></button></div><p class="form-status" id="formStatus" role="status" aria-live="polite"></p></div></form>      <div class="done" id="done" tabindex="-1">
         <svg class="syn apart" id="syn" viewBox="55 22 290 225" aria-hidden="true">
           <defs><clipPath id="synClip"><circle cx="165" cy="112" r="82"/></clipPath></defs>
           <circle class="syn-glow" cx="235" cy="112" r="82" clip-path="url(#synClip)" fill="#B9A2D8"/>
@@ -359,73 +153,27 @@ window.AMORBIT_CONFIG = {
           <h3>Your free reading is on its way</h3>
           <p id="doneText">Check your inbox in a few minutes.</p>
         </div>
-      </div>
-    </div>
-  </section>
+      </div></div></div></div></section><section class="intro" id="connection"><div class="wrap"><div class="section-heading"><p class="eyebrow">There’s more to your chemistry</p><h2>You’re more than two signs.<br>You’re a whole <em>dynamic.</em></h2><p>A new lens for the things you feel, but can’t quite put into words.</p></div><div class="benefits">
+<article class="benefit"><span class="benefit-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" aria-hidden="true"><circle cx="15" cy="21" r="11" stroke="currentColor"/><circle cx="27" cy="21" r="11" stroke="currentColor"/><path d="M21 10v22" stroke="currentColor" opacity=".3"/></svg></span><span class="number">01 / YOUR CONNECTION</span><h3>Understand the pull.</h3><p>Explore the patterns behind your attraction, and the ways you naturally bring each other closer.</p></article><article class="benefit"><span class="benefit-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M21 3v36M3 21h36M8 8l26 26M8 34L34 8" stroke="currentColor"/><circle cx="21" cy="21" r="12" stroke="currentColor"/></svg></span><span class="number">02 / YOUR CONNECTION</span><h3>Make sense of the friction.</h3><p>Different emotional rhythms don’t have to mean disconnection. See where you might miss each other.</p></article><article class="benefit"><span class="benefit-icon"><svg width="42" height="42" viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="M5 24c0-12 15-20 26-15M26 4l6 5-5 7M37 18c0 12-15 20-26 15M16 38l-6-5 5-7" stroke="currentColor"/><circle cx="21" cy="21" r="4" stroke="currentColor"/></svg></span><span class="number">03 / YOUR CONNECTION</span><h3>Find a way forward.</h3><p>Turn reflection into a conversation, with simple prompts you can bring into everyday life.</p></article></div></div></section>
 
-  <section class="coming">
-    <div class="wrap">
-      <h2>What Amorbit does when it launches</h2>
-      <ul>
-        <li><strong>A daily note for the two of you</strong><span>Each morning: whether today suits a big conversation, or is better left light.</span></li>
-        <li><strong>The full picture of your match</strong><span>Where you pull together, where you clash, and why.</span></li>
-        <li><strong>The same answer every time</strong><span>Your reading comes from exact planetary positions, so it won't change if you check again tomorrow.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="pricing">
-    <div class="wrap">
-      <h2>Free means free</h2>
-      <p>This reading costs nothing and asks for no card. When the app launches, your birth chart and a compatibility summary stay free for good.</p>
-      <p>Deeper features will be an optional subscription. You'll always see the price before you pay, and we'll remind you before any renewal.</p>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="wrap">
-    <p>Readings are written with AI from precise planetary positions. For reflection and fun, not for major life decisions.</p>
-    <p>We use your birth details only to create your reading, and we never sell your data. <a href="/privacy.html" id="privacyLink">Privacy policy</a></p>
-    <p>© <span id="year"></span> Amorbit</p>
-  </div>
-</footer>
-
+<section class="coming" id="ahead"><div class="wrap coming-layout"><div><p class="eyebrow">A connection worth coming back to</p><h2>Your story<br>doesn’t stop here.</h2><p class="coming-copy">The free reading is just the beginning. Here’s what’s coming to Amorbit.</p></div><div class="roadmap"><article class="roadmap-item"><span>01</span><div><h3>A daily note for the two of you</h3><p>A little perspective on your day, with prompts for connection and conversation.</p></div></article><article class="roadmap-item"><span>02</span><div><h3>A deeper look at your dynamic</h3><p>Explore attraction, communication, and emotional needs through both of your charts.</p></div></article><article class="roadmap-item"><span>03</span><div><h3>Your charts. A consistent foundation.</h3><p>Readings anchored in your birth details and planetary positions, beyond a sun-sign pairing.</p></div></article></div></div></section>
+<section class="faq" id="questions"><div class="wrap faq-layout"><div><p class="eyebrow">A little clarity</p><h2>Wondering<br>about something?</h2></div><div><details open><summary>Is the reading really free?</summary><p>Yes. Your compatibility reading is free, with no card required. When the app launches, deeper features will be available through an optional paid subscription.</p></details><details><summary>What if I don’t know our birth times?</summary><p>That’s okay. Birth times are optional. They help add detail, such as the rising sign; without them, your reading will focus on what can be interpreted from the information you provide.</p></details><details><summary>Is this just about our sun signs?</summary><p>No. Amorbit calculates both birth charts from NASA JPL planetary data and looks at how the planets in each chart relate. Interpretations are written with AI, as a starting point for reflection.</p></details><details><summary>Do we have to be in a relationship?</summary><p>You can explore a connection whether you’re dating, together, or simply curious about someone. A reading is a conversation starter, not a verdict on your future.</p></details></div></div></section>
+<section class="closing"><p class="eyebrow">Your two worlds. A little closer.</p><h2>There’s a story in your stars.</h2><a class="btn" href="#reading">Let’s find yours <span class="arrow" aria-hidden="true">&#x2197;&#xFE0E;</span></a></section></main>
+<footer><div class="wrap"><div class="footer-top"><a class="brand" href="#top"><span class="brand-icon" aria-hidden="true">✧</span>amorbit</a><p>A little less “why?” A little more us.</p></div><div class="footer-bottom"><div><p>Readings are written with AI from planetary positions. For reflection and fun, not for major life decisions.</p><p>We use your birth details to create your reading. See our privacy policy for details.</p></div><a href="/privacy.html" id="privacyLink">Privacy policy &#x2197;&#xFE0E;</a></div><p class="copyright">© <span id="year"></span> Amorbit. Astrology for the two of you.</p></div></footer>
 <script>
-/* ---------- Chart rings ---------- */
-(function drawRings() {
-  var NS = "http://www.w3.org/2000/svg";
-  function el(tag, attrs, parent) {
-    var n = document.createElementNS(NS, tag);
-    for (var k in attrs) n.setAttribute(k, attrs[k]);
-    parent.appendChild(n);
-    return n;
-  }
-  function ring(group, cx, cy, color, planets) {
-    el("circle", { cx: cx, cy: cy, r: 95, fill: "none", stroke: color, "stroke-width": 1.6 }, group);
-    el("circle", { cx: cx, cy: cy, r: 72, fill: "none", stroke: color, "stroke-opacity": .55, "stroke-width": 1 }, group);
-    for (var i = 0; i < 12; i++) {           // 12 zodiac divisions
-      var a = (i * 30) * Math.PI / 180;
-      el("line", {
-        x1: cx + 72 * Math.cos(a), y1: cy + 72 * Math.sin(a),
-        x2: cx + 95 * Math.cos(a), y2: cy + 95 * Math.sin(a),
-        stroke: color, "stroke-opacity": .55, "stroke-width": 1
-      }, group);
-    }
-    planets.forEach(function (deg, i) {       // planet positions
-      var a = deg * Math.PI / 180, r = 83;
-      el("circle", { cx: cx + r * Math.cos(a), cy: cy + r * Math.sin(a), r: i === 0 ? 4.5 : 3, fill: i === 0 ? "#E9D8A6" : color }, group);
-    });
-  }
-  ring(document.getElementById("ringYou"), 160, 130, "#E58FA8", [12, 58, 131, 204, 290, 337]);
-  ring(document.getElementById("ringThem"), 240, 130, "#9FB4F0", [168, 221, 16, 95, 260, 312]);
+/* Chart geometry is inline. Motion is CSS-only, including in previews without JavaScript. */
 
-  var svg = document.getElementById("charts");
-  requestAnimationFrame(function () {
-    requestAnimationFrame(function () { svg.classList.remove("apart"); });
-  });
+
+/* Optional lifecycle handling; visual content and motion do not require JS. */
+(function(){
+  var art=document.querySelector('.hero-art'),pause=document.getElementById('pauseMotion');
+  var visible=true;
+  function sync(){art.classList.toggle('motion-paused',pause.checked||document.hidden||!visible);}
+  pause.addEventListener('change',sync);
+  document.addEventListener('visibilitychange',sync);
+  if('IntersectionObserver' in window){new IntersectionObserver(function(entries){visible=entries[0].isIntersecting;sync();},{threshold:0}).observe(art);}
+  sync();
 })();
-
 
 /* ---------- Sky drifts with scroll ---------- */
 (function sky() {
@@ -479,26 +227,69 @@ document.getElementById("year").textContent = new Date().getFullYear();
   function setError(id, msg) {
     var input = document.getElementById(id);
     var err = document.getElementById(id + "_err");
-    if (input && input.type !== "checkbox") input.setAttribute("aria-invalid", msg ? "true" : "false");
+    if (input) input.setAttribute("aria-invalid", msg ? "true" : "false");
     if (err) err.textContent = msg || "";
     return !msg;
   }
 
-  function validate() {
+  f.addEventListener("input", function (e) {
+    if (e.target.getAttribute("aria-invalid") === "true") setError(e.target.id, "");
+  });
+  f.addEventListener("change", function (e) { if (e.target.id === "consent" && e.target.checked) setError("consent", ""); });
+
+  var now = new Date();
+  var today = [now.getFullYear(), String(now.getMonth()+1).padStart(2,"0"), String(now.getDate()).padStart(2,"0")].join("-");
+  f.elements.namedItem("you_date").max = today; f.elements.namedItem("them_date").max = today;
+  function dateMsg(v) { return !v ? "Enter a birth date." : (v > today ? "Birth date can't be in the future." : ""); }
+
+  function validate1() {
     var ok = true;
-    var today = new Date().toISOString().slice(0, 10);
-    ok = setError("you_name", f.you_name.value.trim() ? "" : "Enter your first name.") && ok;
-    ok = setError("them_name", f.them_name.value.trim() ? "" : "Enter their first name.") && ok;
-    ["you_date", "them_date"].forEach(function (id) {
-      var v = f[id].value;
-      var msg = !v ? "Enter a birth date." : (v > today ? "Birth date can't be in the future." : "");
-      ok = setError(id, msg) && ok;
-    });
-    ok = setError("you_place", f.you_place.value.trim() ? "" : "Enter the city you were born in.") && ok;
-    var email = f.email.value.trim();
-    ok = setError("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Enter an email address like you@example.com.") && ok;
-    ok = setError("consent", f.consent.checked ? "" : "Tick the box so we can email your reading.") && ok;
+    ok = setError("you_name", f.elements.namedItem("you_name").value.trim() ? "" : "Enter your first name.") && ok;
+    ok = setError("you_date", dateMsg(f.elements.namedItem("you_date").value)) && ok;
+    var picking = !!(window.AMORBIT_CONFIG && window.AMORBIT_CONFIG.API_ENDPOINT);
+    var youPlace = f.elements.namedItem("you_place").value.trim();
+    ok = setError("you_place", !youPlace ? "Enter the city you were born in." :
+      (picking && !document.getElementById("you_place_id").value ? "Pick your city from the list." : "")) && ok;
     return ok;
+  }
+
+  function validate2() {
+    var ok = true;
+    ok = setError("them_name", f.elements.namedItem("them_name").value.trim() ? "" : "Enter their first name.") && ok;
+    ok = setError("them_date", dateMsg(f.elements.namedItem("them_date").value)) && ok;
+    var themPlace = f.elements.namedItem("them_place").value.trim();
+    var picking2 = !!(window.AMORBIT_CONFIG && window.AMORBIT_CONFIG.API_ENDPOINT);
+    ok = setError("them_place", themPlace && picking2 && !document.getElementById("them_place_id").value ?
+      "Pick their city from the list, or leave it blank." : "") && ok;
+    var email = f.elements.namedItem("email").value.trim();
+    ok = setError("email", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? "" : "Enter an email address like you@example.com.") && ok;
+    ok = setError("consent", f.elements.namedItem("consent").checked ? "" : "Tick the box so we can email your reading.") && ok;
+    return ok;
+  }
+
+  var step1 = document.getElementById("step1"), step2 = document.getElementById("step2");
+  var stepLabel = document.getElementById("stepLabel");
+  function showStep(n) {
+    step1.hidden = n !== 1; step2.hidden = n !== 2;
+    document.querySelector(".form-top > span").textContent = n === 1 ? "Let’s start with you" : "Bring your charts together";
+    stepLabel.textContent = "Step " + n + " of 2 — " + (n === 1 ? "Your details" : "Their details");
+    document.querySelector(".progress-fill").style.width = n === 1 ? "50%" : "100%";
+    (n === 1 ? f.elements.namedItem("you_name") : f.elements.namedItem("them_name")).focus({ preventScroll: true });
+    document.getElementById("reading").scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
+  }
+  document.getElementById("nextBtn").addEventListener("click", function () {
+    if (!validate1()) { (step1.querySelector("[aria-invalid=true]") || f.elements.namedItem("you_name")).focus(); return; }
+    if (window.fbq) fbq("trackCustom", "StepOneDone");
+    showStep(2);
+  });
+  document.getElementById("backBtn").addEventListener("click", function () { showStep(1); });
+  step1.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") { e.preventDefault(); document.getElementById("nextBtn").click(); }
+  });
+
+  function validate() {
+    if (!validate1()) { showStep(1); return false; }
+    return validate2();
   }
 
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -545,10 +336,10 @@ document.getElementById("year").textContent = new Date().getFullYear();
     }
     svg.setAttribute("class", "syn apart");
     wrap.classList.remove("show");
-    status.textContent = "Placing your planets…";
+    status.textContent = "Your two stories…";
     setTimeout(function () { svg.setAttribute("class", "syn named"); }, 80);
-    setTimeout(function () { svg.setAttribute("class", "syn named linked"); status.textContent = "Finding where your charts meet…"; }, 1600);
-    setTimeout(function () { svg.setAttribute("class", "syn named linked glow"); status.textContent = "Writing your reading…"; }, 2900);
+    setTimeout(function () { svg.setAttribute("class", "syn named linked"); status.textContent = "A little more understanding."; }, 1600);
+    setTimeout(function () { svg.setAttribute("class", "syn named linked glow"); status.textContent = "A little more us."; }, 2900);
     setTimeout(function () { status.textContent = ""; wrap.classList.add("show"); }, 3900);
   }
 
@@ -557,15 +348,15 @@ document.getElementById("year").textContent = new Date().getFullYear();
     status.textContent = "";
     status.className = "form-status";
     if (!validate()) {
-      var first = f.querySelector("[aria-invalid=true]") || f.consent;
+      var first = (step2.hidden ? step1 : step2).querySelector("[aria-invalid=true]") || f.elements.namedItem("consent");
       first.focus();
       return;
     }
 
     var payload = {
-      you: { name: f.you_name.value.trim(), date: f.you_date.value, time: f.you_time.value || null, place: f.you_place.value.trim() },
-      them: { name: f.them_name.value.trim(), date: f.them_date.value, time: f.them_time.value || null, place: f.them_place.value.trim() || null },
-      email: f.email.value.trim(),
+      you: { name: f.elements.namedItem("you_name").value.trim(), date: f.elements.namedItem("you_date").value, time: f.elements.namedItem("you_time").value || null, place: f.elements.namedItem("you_place").value.trim(), place_id: Number(document.getElementById("you_place_id").value) || null },
+      them: { name: f.elements.namedItem("them_name").value.trim(), date: f.elements.namedItem("them_date").value, time: f.elements.namedItem("them_time").value || null, place: f.elements.namedItem("them_place").value.trim() || null, place_id: Number(document.getElementById("them_place_id").value) || null },
+      email: f.elements.namedItem("email").value.trim(),
       consent: true,
       attribution: attribution,
       submitted_at: new Date().toISOString()
@@ -577,7 +368,7 @@ document.getElementById("year").textContent = new Date().getFullYear();
     var send = cfg.API_ENDPOINT
       ? fetch(cfg.API_ENDPOINT, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) })
           .then(function (r) { if (!r.ok) throw new Error("status " + r.status); })
-      : new Promise(function (res) { console.log("Preview mode, not sent:", payload); setTimeout(res, 600); });
+      : new Promise(function (res) { setTimeout(res, 600); });
 
     send.then(function () {
       if (window.fbq) fbq("track", "Lead");
@@ -586,6 +377,10 @@ document.getElementById("year").textContent = new Date().getFullYear();
       document.getElementById("doneText").textContent =
         "We're sending the reading for " + payload.you.name + " and " + payload.them.name +
         " to " + payload.email + ". It usually arrives within a few minutes.";
+      if (!cfg.API_ENDPOINT) {
+        done.querySelector("h3").textContent = "Preview complete";
+        document.getElementById("doneText").textContent = "This is a preview. No details were sent and no email will be delivered.";
+      }
       done.style.display = "block";
       done.scrollIntoView({ block: "start", behavior: reduce ? "auto" : "smooth" });
       done.focus({ preventScroll: true });
@@ -597,6 +392,96 @@ document.getElementById("year").textContent = new Date().getFullYear();
       btn.textContent = "Send our free reading";
     });
   });
+})();
+</script>
+
+<script>
+/* Birth-city picker: suggestions from the Amorbit API, so every reading gets a real place and time zone */
+(function () {
+  var endpoint = (window.AMORBIT_CONFIG && window.AMORBIT_CONFIG.API_ENDPOINT) || "";
+  if (!endpoint) return;                       // preview mode: plain text field
+  var base = endpoint.replace(/\/waitlist\/?$/, "");
+
+  function esc(t) { return t.replace(/[&<>"]/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+
+  function picker(id) {
+    var input = document.getElementById(id), hidden = document.getElementById(id + "_id");
+    var list = document.getElementById(id + "_list");
+    var items = [], active = -1, timer = null, ctrl = null;
+
+    function place() { list.style.top = (input.offsetTop + input.offsetHeight) + "px"; }
+    function close() { list.hidden = true; input.setAttribute("aria-expanded", "false"); input.removeAttribute("aria-activedescendant"); active = -1; }
+    function render(q) {
+      place();
+      if (!items.length) {
+        list.innerHTML = '<li class="none">No match yet. Try the nearest larger city.</li>';
+      } else {
+        var n = q.split(",")[0].trim().length;
+        list.innerHTML = items.map(function (it, i) {
+          var l = esc(it.label), head = it.label.slice(0, n).toLowerCase() === q.split(",")[0].trim().toLowerCase();
+          return '<li role="option" id="' + id + '_opt' + i + '" aria-selected="false">' +
+            (head ? "<b>" + esc(it.label.slice(0, n)) + "</b>" + esc(it.label.slice(n)) : l) + "</li>";
+        }).join("");
+      }
+      list.hidden = false; input.setAttribute("aria-expanded", "true");
+    }
+    function highlight(i) {
+      var opts = list.querySelectorAll('[role=option]');
+      if (!opts.length) return;
+      active = (i + opts.length) % opts.length;
+      opts.forEach(function (o, k) { o.setAttribute("aria-selected", k === active ? "true" : "false"); });
+      input.setAttribute("aria-activedescendant", opts[active].id);
+      opts[active].scrollIntoView({ block: "nearest" });
+    }
+    function choose(i) {
+      var it = items[i]; if (!it) return;
+      input.value = it.label; hidden.value = it.id;
+      input.setAttribute("aria-invalid", "false");
+      var err = document.getElementById(id + "_err"); if (err) err.textContent = "";
+      close();
+    }
+
+    // On phones the keyboard covers the lower half: lift the field near the top so suggestions stay visible
+    input.addEventListener("focus", function () {
+      if (window.innerWidth <= 650) setTimeout(function () { input.scrollIntoView({ block: "start", behavior: "smooth" }); }, 250);
+    });
+    input.addEventListener("input", function () {
+      hidden.value = "";
+      var q = input.value.trim();
+      clearTimeout(timer);
+      if (q.length < 2) { close(); return; }
+      timer = setTimeout(function () {
+        if (ctrl) ctrl.abort();
+        ctrl = new AbortController();
+        fetch(base + "/cities?q=" + encodeURIComponent(q), { signal: ctrl.signal })
+          .then(function (r) { return r.ok ? r.json() : []; })
+          .then(function (data) { items = data || []; if (document.activeElement === input) render(q); })
+          .catch(function () {});
+      }, 180);
+    });
+    input.addEventListener("keydown", function (e) {
+      if (list.hidden) return;
+      if (e.key === "ArrowDown") { e.preventDefault(); highlight(active + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); highlight(active - 1); }
+      else if (e.key === "Enter") { if (active >= 0 || items.length === 1) { e.preventDefault(); e.stopPropagation(); choose(active >= 0 ? active : 0); } }
+      else if (e.key === "Escape") { close(); }
+    });
+    list.addEventListener("pointerdown", function (e) {
+      var li = e.target.closest('[role=option]'); if (!li) return;
+      e.preventDefault();
+      choose(Array.prototype.indexOf.call(list.querySelectorAll('[role=option]'), li));
+    });
+    input.addEventListener("blur", function () {
+      setTimeout(function () {
+        var match = items.filter(function (it) { return it.label.toLowerCase() === input.value.trim().toLowerCase(); })[0];
+        if (match && !hidden.value) hidden.value = match.id;
+        close();
+      }, 120);
+    });
+    window.addEventListener("resize", function () { if (!list.hidden) place(); });
+  }
+  picker("you_place");
+  picker("them_place");
 })();
 </script>
 </body>
